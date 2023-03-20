@@ -4,7 +4,6 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import ru.hse.Message.Message;
 
 /**
  * Класс представляющий агента в МАС

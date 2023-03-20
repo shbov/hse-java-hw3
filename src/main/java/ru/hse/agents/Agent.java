@@ -4,6 +4,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import ru.hse.Message.Message;
 
 /**
  * Класс представляющий агента в МАС
@@ -11,12 +12,15 @@ import lombok.extern.slf4j.Slf4j;
  * @param <MessageType> тип обрабатываемых сообщений
  */
 @Slf4j
-public abstract class Agent<MessageType extends Message> implements Runnable {
-    private final BlockingQueue<MessageType> messageQueue = new LinkedBlockingQueue<>();
+public abstract class Agent<Message> implements Runnable {
+    private final BlockingQueue<Message> messageQueue = new LinkedBlockingQueue<>();
 
     @Getter
     private String name;
     private Thread workingThread;
+
+    public Agent(int id, SuperVisor supervisor) {
+    }
 
     /**
      * Запускает агента
@@ -40,13 +44,13 @@ public abstract class Agent<MessageType extends Message> implements Runnable {
      * переопределяем в конкретных агентах этот метод, программируя их поведение
      * @param message обрабатываемое сообщение
      */
-    abstract protected void proceed(MessageType message) throws Exception;
+    abstract protected void proceed(Message message) throws Exception;
 
     /**
      * Передает сообщение агенту
      * @param message сообщение для агента
      */
-    public void registerMessage(MessageType message) {
+    public void registerMessage(Message message) {
         messageQueue.add(message);
     }
 
@@ -54,7 +58,7 @@ public abstract class Agent<MessageType extends Message> implements Runnable {
     public void run() {
         while (true) {
             try {
-                MessageType message = messageQueue.take();
+                Message message = messageQueue.take();
 
                 log.debug("Agent {} received message {}", this.name, message.getId());
                 proceed(message);

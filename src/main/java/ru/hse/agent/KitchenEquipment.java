@@ -3,6 +3,7 @@ package ru.hse.agent;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
+//такое чувство будто он не обменивается сообщениями
 @Slf4j
 public class KitchenEquipment extends Agent {
   String typeOfEquipment;

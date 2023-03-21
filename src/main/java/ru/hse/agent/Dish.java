@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
+//такое чувство будто он не обменивается сообщениями
 @Slf4j
 public class Dish extends Agent {
   public Process process;

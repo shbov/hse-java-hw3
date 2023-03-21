@@ -14,14 +14,13 @@ public class Visitor extends Agent {
 
   @Override
   protected void proceed(Message message) throws Exception {
+    // 1. Актуальное меню: исключительно блюда и напитки, которые могут быть приготовлены за заданное нормативное время
     if (message instanceof CreateOrder) {
-      System.out.println("Estimated time of order " + ((CreateOrder) message).minute);
+      log.info("Примерное время готовки заказа " + ((CreateOrder) message).minute + " мин.");
     } else if (message instanceof SendMenu) {
       List<Dish> dishes = ((SendMenu) message).dishes;
-
     } else {
       System.out.println("Message not acceptable " + message.getClass().toString());
-        }
-
     }
+  }
 }

@@ -73,7 +73,7 @@ public abstract class Agent<MessageType extends Message> implements Runnable {
         log.error("An error occurred in Agent {}", name, e);
         break;
       }
-        }
+    }
     }
 
     private synchronized String generateName() {

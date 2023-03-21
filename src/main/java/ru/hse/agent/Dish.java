@@ -19,6 +19,8 @@ public class Dish extends Agent {
 
   @Override
   protected void proceed(Message o) throws Exception {
-    // TODO Apply Process to Product
+    // содержит списки созданных управляющим агентом агентов процесса, операций и агентов продуктов
+    // для приготовления конкретного блюда / напитка из заказа посетителя. Уничтожается, когда
+    // данное блюдо / напиток приготовлено, а заказ выполнен.
   }
 }

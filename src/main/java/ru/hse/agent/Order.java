@@ -1,13 +1,16 @@
-package ru.hse.agents;
+package ru.hse.agent;
 
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Order extends Agent {
     public List<Dish> dishes;
-    public Order(int id, SuperVisor supervisor, List<Dish> dishes) {
-        super(id, supervisor);
-        this.dishes=dishes;
-    }
+
+  public Order(int id, SuperVisor supervisor, List<Dish> dishes) {
+    super(id, supervisor);
+    this.dishes = dishes;
+  }
 
     @Override
     protected void proceed(Object o) throws Exception {

@@ -3,6 +3,7 @@ package ru.hse.agent;
 import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
+import ru.hse.message.Message;
 
 @Slf4j
 public class Storage extends Agent {
@@ -24,5 +25,5 @@ public class Storage extends Agent {
   }
 
   @Override
-  protected void proceed(Object o) throws Exception {}
+  protected void proceed(Message o) throws Exception {}
 }

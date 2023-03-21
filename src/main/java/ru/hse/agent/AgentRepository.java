@@ -42,9 +42,9 @@ public class AgentRepository {
    * @return список всех рабочих агентов
    */
   public static synchronized <T extends Agent<?>> List<T> findByType(Class<T> type) {
-        return AGENTS.stream()
-                .filter(agent -> agent.getClass() == type)
-                .map(agent -> (T) agent)
-                .toList();
-    }
+    return AGENTS.stream()
+        .filter(agent -> agent.getClass() == type)
+        .map(agent -> (T) agent)
+        .toList();
+  }
 }

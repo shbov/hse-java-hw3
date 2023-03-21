@@ -2,6 +2,7 @@ package ru.hse.agent;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import ru.hse.message.Message;
 import ru.hse.message.supervisor.CreateOrder;
 import ru.hse.message.supervisor.SendMenu;
 
@@ -12,7 +13,7 @@ public class Visitor extends Agent {
   }
 
   @Override
-  protected void proceed(Object message) throws Exception {
+  protected void proceed(Message message) throws Exception {
     if (message instanceof CreateOrder) {
       System.out.println("Estimated time of order " + ((CreateOrder) message).minute);
     } else if (message instanceof SendMenu) {

@@ -2,6 +2,7 @@ package ru.hse.agent;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import ru.hse.message.Message;
 
 @Slf4j
 public class Process extends Agent {
@@ -14,7 +15,7 @@ public class Process extends Agent {
   }
 
   @Override
-  protected void proceed(Object o) throws Exception {
+  protected void proceed(Message o) throws Exception {
     // TODO Эти агенты фактически выполняют подготовку заказа.
     //  Они могут обращаться к агентам, представляющим человека (повара, готовящего мясо)
     //  или устройство (кофеварку, которая готовит эспрессо).

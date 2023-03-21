@@ -4,18 +4,18 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import ru.hse.message.Message;
 
 /**
  * Класс представляющий агента в МАС
  *
- * @param <Message> тип обрабатываемых сообщений
+ * @param <MessageType> тип обрабатываемых сообщений
  */
 @Slf4j
-public abstract class Agent<Message> implements Runnable {
-  private final BlockingQueue<Message> messageQueue = new LinkedBlockingQueue<>();
-
-  @Getter private final int id;
+public abstract class Agent<MessageType extends Message> implements Runnable {
+  private final BlockingQueue<MessageType> messageQueue = new LinkedBlockingQueue<>();
   @Getter private final SuperVisor supervisor;
+  @Getter private final int id;
 
   @Getter private String name;
   private Thread workingThread;
@@ -45,14 +45,14 @@ public abstract class Agent<Message> implements Runnable {
    *
    * @param message обрабатываемое сообщение
    */
-  protected abstract void proceed(Message message) throws Exception;
+  protected abstract void proceed(MessageType message) throws Exception;
 
   /**
    * Передает сообщение агенту
    *
    * @param message сообщение для агента
    */
-  public void registerMessage(Message message) {
+  public void registerMessage(MessageType message) {
     messageQueue.add(message);
   }
 
@@ -60,7 +60,7 @@ public abstract class Agent<Message> implements Runnable {
   public void run() {
     while (true) {
       try {
-        Message message = messageQueue.take();
+        MessageType message = messageQueue.take();
 
         log.debug("Agent {} received message {}", this.name, message.getId());
         proceed(message);
@@ -68,11 +68,11 @@ public abstract class Agent<Message> implements Runnable {
 
       } catch (InterruptedException e) {
         log.info("Agent {} was interrupted", name);
-                break;
-            } catch (Exception e) {
-                log.error("An error occurred in Agent {}", name, e);
-                break;
-            }
+        break;
+      } catch (Exception e) {
+        log.error("An error occurred in Agent {}", name, e);
+        break;
+      }
         }
     }
 

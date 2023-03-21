@@ -1,6 +1,7 @@
 package ru.hse.agent;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.hse.message.Message;
 
 @Slf4j
 public class Ingredient extends Agent {
@@ -14,7 +15,5 @@ public class Ingredient extends Agent {
   }
 
   @Override
-  protected void proceed(Object o) throws Exception {
-    // TODO какие команды приходят продукту
-  }
+  protected void proceed(Message message) throws Exception {}
 }

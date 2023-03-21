@@ -2,6 +2,7 @@ package ru.hse.agent;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import ru.hse.message.Message;
 
 @Slf4j
 public class Cooker extends Agent {
@@ -15,7 +16,7 @@ public class Cooker extends Agent {
   }
 
   @Override
-  protected void proceed(Object o) throws Exception {
+  protected void proceed(Message o) throws Exception {
     // TODO представляет конкретного человека – повара ресторана,  управляет его работой (назначает
     // ему выполнение определенной операции,
     //  отменяет / приостанавливает (опционально) ранее назначенную ему операцию,

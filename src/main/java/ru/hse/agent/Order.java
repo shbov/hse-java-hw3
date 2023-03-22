@@ -3,6 +3,7 @@ package ru.hse.agent;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
+import ru.hse.message.supervisor.CreateOrderIn;
 
 @Slf4j
 public class Order extends Agent {
@@ -14,7 +15,13 @@ public class Order extends Agent {
   }
 
   @Override
-  protected void proceed(Message o) throws Exception {
+  protected void proceed(Message message) throws Exception {
+    log.info(Thread.currentThread().getName());
+
+    if (message instanceof CreateOrderIn createOrderIn) {
+      log.info("Примерное время готовки заказа " + createOrderIn.minute + " мин.");
+    }
+
     // Типовое поведение агента:
     // 1. Принимает и обрабатывает сообщения от управляющего агента.
     // 2. Отправляет агенту посетителя информацию о времени ожидания его заказа.

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 import ru.hse.message.supervisor.CreateOrderIn;
 import ru.hse.message.supervisor.SendMenuIn;
+import ru.hse.utilities.AgentUtility;
 
 @Slf4j
 public class Visitor extends Agent {
@@ -14,11 +15,19 @@ public class Visitor extends Agent {
 
   @Override
   protected void proceed(Message message) throws Exception {
-    // 1. Актуальное меню: исключительно блюда и напитки, которые могут быть приготовлены за заданное нормативное время
-    if (message instanceof CreateOrderIn) {
-      log.info("Примерное время готовки заказа " + ((CreateOrderIn) message).minute + " мин.");
-    } else if (message instanceof SendMenuIn) {
-      List<Dish> dishes = ((SendMenuIn) message).dishes;
+    log.info(Thread.currentThread().getName());
+    if (message instanceof CreateOrderIn createOrderIn) {
+      Order order = new Order(AgentUtility.getID(Order.class), this.getSupervisor(), createOrderIn.dishes);
+      Order.start(order);
+
+      order.registerMessage(createOrderIn);
+    } else if (message instanceof SendMenuIn sendMenuIn) {
+      // 1. Актуальное меню: исключительно блюда и напитки, которые
+      // могут быть приготовлены за заданное нормативное время
+
+      List<Dish> dishes = sendMenuIn.dishes;
+      log.info("Вот наше супер меню: " + dishes.toString());
+      // todo: foreach dishes from where?...
     } else {
       System.out.println("Message not acceptable " + message.getClass().toString());
     }

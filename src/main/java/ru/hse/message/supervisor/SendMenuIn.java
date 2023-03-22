@@ -6,7 +6,7 @@ import ru.hse.agent.Dish;
 import ru.hse.message.Message;
 
 @Slf4j
-public class SendMenu extends Message {
+public class SendMenuIn extends Message {
 
   public List<Dish> dishes;
 }

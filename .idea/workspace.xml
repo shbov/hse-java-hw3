@@ -5,22 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd25dc0c-344e-4647-b3b5-0515579540af" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/cooker/ChangeOperationIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/cooker/SendProcessStageOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/ingredient/DeleteReservationIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/ingredient/FeedBackIngredientOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/ingredient/ReservateIngredientIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/operation/RequestCookerAndEquipmentOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/order/GetWaitingTimeIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/order/RequireWaitingTimeFromProcessOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/order/SendWaitingTImeOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/process/SendWaitingTimeToOrderOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/storage/CheckIngredientIn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/storage/FeedBackCheckIngredientOut.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/storage/ReservedIgredientForDish.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/supervisor/SendChequeOut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/visitor/RequestChequeOut.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/agent/Dish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/agent/Dish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/agent/KitchenEquipment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/agent/KitchenEquipment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/agent/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/agent/Visitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/message/supervisor/CreateOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/supervisor/CreateOrderIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/message/supervisor/SendMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/supervisor/SendMenuIn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/message/visitor/MakeOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/visitor/MakeOrderOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/hse/message/visitor/RequestMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/hse/message/visitor/RequestMenuOut.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

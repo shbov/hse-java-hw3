@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
+import ru.hse.message.supervisor.ReservateCookerIn;
+import ru.hse.message.supervisor.ReservateEquipmentIn;
 
 @Slf4j
 @ToString
@@ -22,8 +24,9 @@ public class Operation extends Agent {
 
   @Override
   protected void proceed(Message o) throws Exception {
-    // TODO запрашивает управляющего агента зарезервировать агента повара
-    // и агента оборудования для выполнения операции процесса
+    //TODO либо так, либо при конструкторе сразу назначать
+    Message requestCooker = new ReservateCookerIn(this.getId());
+    Message requestEquipment = new ReservateEquipmentIn(this.getId());
 
   }
   // продукты для операции

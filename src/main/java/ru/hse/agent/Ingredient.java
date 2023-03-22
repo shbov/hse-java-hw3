@@ -18,5 +18,7 @@ public class Ingredient extends Agent {
   }
 
   @Override
-  protected void proceed(Message message) throws Exception {}
+  protected void proceed(Message message) throws Exception {
+    //TODO с бедолагой никто не общается
+  }
 }

@@ -19,6 +19,6 @@ public class KitchenEquipment extends Agent {
   @Override
   protected void proceed(Message o) throws Exception {
     // а что делать сковородке, когда она просто сковородка
-    return;
+    //TODO с бедолагой никто не общается
     }
 }

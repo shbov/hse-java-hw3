@@ -6,18 +6,26 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
+import ru.hse.message.storage.CheckIngredientIn;
+import ru.hse.message.storage.FeedBackCheckIngredientOut;
+import ru.hse.message.storage.ReservedIgredientForDish;
+import ru.hse.message.supervisor.CreateOrderIn;
+import ru.hse.message.supervisor.SendMenuIn;
+import ru.hse.utilities.AgentUtility;
 
 @Slf4j
 @ToString
 public class Storage extends Agent {
-  @Getter private List<Ingredient> activeIngredients;
-  @Getter private Map<Integer, Integer> storage;
+  @Getter
+  private List<Ingredient> activeIngredients;
+  @Getter
+  private Map<Integer, Integer> storage;
 
   public Storage(
-      int id,
-      SuperVisor supervisor,
-      List<Ingredient> activeIngredients,
-      Map<Integer, Integer> storage) {
+          int id,
+          SuperVisor supervisor,
+          List<Ingredient> activeIngredients,
+          Map<Integer, Integer> storage) {
     super(id, supervisor);
     this.activeIngredients = activeIngredients;
     this.storage = storage;
@@ -28,5 +36,27 @@ public class Storage extends Agent {
   }
 
   @Override
-  protected void proceed(Message o) throws Exception {}
+  protected void proceed(Message message) throws Exception {
+    log.info(Thread.currentThread().getName());
+    if (message instanceof CheckIngredientIn checkIngredientIn) {
+      if(storage.containsKey(checkIngredientIn.IngId)){
+        if(storage.get(checkIngredientIn.IngId)> checkIngredientIn.amount){
+          Message respond = new FeedBackCheckIngredientOut(true);
+        }
+        else{
+          Message respond = new FeedBackCheckIngredientOut(false);
+        }
+      }
+      Message respond = new FeedBackCheckIngredientOut(false);
+      //TODO отправить ответ
+    } else if (message instanceof ReservedIgredientForDish reservedIgredientForDish) {
+      Ingredient product =
+              new Ingredient(
+                      AgentUtility.generateID(Ingredient.class), reservedIgredientForDish.name,reservedIgredientForDish.amount, this.getSupervisor());
+      Ingredient.start(product);
+      storage.put(reservedIgredientForDish.IngId, storage.get(reservedIgredientForDish.IngId)-reservedIgredientForDish.amount);
+    } else {
+      System.out.println("Message not acceptable " + message.getClass().toString());
+    }
+  }
 }

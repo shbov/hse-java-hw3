@@ -3,9 +3,9 @@ package ru.hse.message.storage;
 import ru.hse.message.Message;
 
 public class FeedBackCheckIngredientOut extends Message {
-    Boolean success;
+    public Boolean success;
 
-    FeedBackCheckIngredientOut(Boolean success) {
+    public FeedBackCheckIngredientOut(Boolean success) {
         this.success = success;
     }
 }

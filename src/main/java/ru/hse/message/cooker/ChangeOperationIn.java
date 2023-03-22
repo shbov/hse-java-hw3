@@ -1,12 +1,13 @@
 package ru.hse.message.cooker;
 
+import ru.hse.agent.Operation;
 import ru.hse.message.Message;
 
 // удаляем меняем назначаем опреацию
 public class ChangeOperationIn extends Message {
-    String readinessStage = null;
+    public Operation operation;
 
-    ChangeOperationIn(String readinessStage) {
-        this.readinessStage = readinessStage;
+    public ChangeOperationIn(Operation operation) {
+        this.operation = operation;
     }
 }

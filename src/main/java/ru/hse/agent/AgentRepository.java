@@ -47,4 +47,8 @@ public class AgentRepository {
         .map(agent -> (T) agent)
         .toList();
   }
+
+  public static synchronized <T extends Agent<?>> boolean isAgentExist(Class<T> type, int id) {
+    return AGENTS.stream().anyMatch(agent -> agent.getId() == id && agent.getClass() == type);
+  }
 }

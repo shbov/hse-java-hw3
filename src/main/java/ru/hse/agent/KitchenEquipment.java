@@ -1,12 +1,15 @@
 package ru.hse.agent;
 
+import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
-//такое чувство будто он не обменивается сообщениями
+// такое чувство будто он не обменивается сообщениями
 @Slf4j
+@ToString
 public class KitchenEquipment extends Agent {
-  String typeOfEquipment;
+  @Getter private String typeOfEquipment;
 
   public KitchenEquipment(int id, String typeOfEquipment, SuperVisor supervisor) {
     super(id, supervisor);

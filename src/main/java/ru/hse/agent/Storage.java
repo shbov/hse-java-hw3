@@ -2,13 +2,16 @@ package ru.hse.agent;
 
 import java.util.List;
 import java.util.Map;
+import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
 @Slf4j
+@ToString
 public class Storage extends Agent {
-  public List<Ingredient> activeIngredients;
-  public Map<Integer, Integer> storage;
+  @Getter private List<Ingredient> activeIngredients;
+  @Getter private Map<Integer, Integer> storage;
 
   public Storage(
       int id,

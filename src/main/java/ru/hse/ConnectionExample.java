@@ -14,10 +14,10 @@ import ru.hse.utilities.AgentUtility;
 @Slf4j
 public class ConnectionExample {
   public static void main(String[] args) {
-    SuperVisor superVisor = new SuperVisor(AgentUtility.getID(SuperVisor.class));
+    SuperVisor superVisor = new SuperVisor(AgentUtility.generateID(SuperVisor.class));
     SuperVisor.start(superVisor);
 
-    Visitor visitor1 = new Visitor(AgentUtility.getID(Visitor.class), superVisor);
+    Visitor visitor1 = new Visitor(AgentUtility.generateID(Visitor.class), superVisor);
     Visitor.start(visitor1);
 
     List<Dish> dishes = new CopyOnWriteArrayList<>();

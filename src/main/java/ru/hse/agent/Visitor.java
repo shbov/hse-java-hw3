@@ -17,7 +17,9 @@ public class Visitor extends Agent {
   protected void proceed(Message message) throws Exception {
     log.info(Thread.currentThread().getName());
     if (message instanceof CreateOrderIn createOrderIn) {
-      Order order = new Order(AgentUtility.getID(Order.class), this.getSupervisor(), createOrderIn.dishes);
+      Order order =
+          new Order(
+              AgentUtility.generateID(Order.class), this.getSupervisor(), createOrderIn.dishes);
       Order.start(order);
 
       order.registerMessage(createOrderIn);

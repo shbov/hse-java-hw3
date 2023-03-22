@@ -8,7 +8,13 @@ import ru.hse.agent.AgentRepository;
 @UtilityClass
 @Slf4j
 public class AgentUtility {
-  public static synchronized <T extends Agent<?>> int getID(Class<T> className) {
-    return AgentRepository.findByType(className).size();
+  public static synchronized <T extends Agent<?>> int generateID(Class<T> className) {
+    int possibleId = AgentRepository.findByType(className).size() + 1;
+
+    while (AgentRepository.isAgentExist(className, possibleId)) {
+      ++possibleId;
+    }
+
+    return possibleId;
   }
 }

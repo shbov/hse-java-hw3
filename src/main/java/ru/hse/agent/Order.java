@@ -1,13 +1,16 @@
 package ru.hse.agent;
 
 import java.util.List;
+import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 import ru.hse.message.supervisor.CreateOrderIn;
 
 @Slf4j
+@ToString
 public class Order extends Agent {
-    public List<Dish> dishes;
+  @Getter private List<Dish> dishes;
 
   public Order(int id, SuperVisor supervisor, List<Dish> dishes) {
     super(id, supervisor);

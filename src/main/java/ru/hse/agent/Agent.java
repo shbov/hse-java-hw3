@@ -1,5 +1,6 @@
 package ru.hse.agent;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import lombok.Getter;
@@ -14,11 +15,15 @@ import ru.hse.message.Message;
 @Slf4j
 public abstract class Agent<MessageType extends Message> implements Runnable {
   private final BlockingQueue<MessageType> messageQueue = new LinkedBlockingQueue<>();
-  @Getter private final SuperVisor supervisor;
+  @JsonIgnore @Getter private final SuperVisor supervisor;
   @Getter private final int id;
-
   @Getter private String name;
-  private Thread workingThread;
+  @Getter @JsonIgnore private Thread workingThread;
+
+  public Agent() {
+    supervisor = null;
+    id = 0;
+  }
 
   public Agent(int id, SuperVisor supervisor) {
     this.id = id;

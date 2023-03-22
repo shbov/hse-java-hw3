@@ -1,13 +1,15 @@
 package ru.hse.agent;
 
 import java.util.List;
+import lombok.Getter;import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
 @Slf4j
+@ToString
 public class Process extends Agent {
-  public int SummaryTime;
-  public List<Operation> operations;
+  @Getter private int SummaryTime;
+  @Getter private List<Operation> operations;
 
   public Process(int id, SuperVisor supervisor, List<Operation> operations) {
     super(id, supervisor);

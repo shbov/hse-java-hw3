@@ -1,15 +1,17 @@
 package ru.hse.agent;
 
 import java.util.List;
+import lombok.Getter;import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
-//такое чувство будто он не обменивается сообщениями
+// такое чувство будто он не обменивается сообщениями
 @Slf4j
+@ToString
 public class Dish extends Agent {
-  public Process process;
-  public List<Ingredient> products;
-  public int cost;
+  @Getter private Process process;
+  @Getter private List<Ingredient> products;
+  @Getter private int cost;
 
   public Dish(int id, SuperVisor supervisor, Process process, List<Ingredient> products, int cost) {
     super(id, supervisor);

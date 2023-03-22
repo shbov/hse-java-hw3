@@ -1,13 +1,16 @@
 package ru.hse.agent;
 
+import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
 @Slf4j
+@ToString
 public class Operation extends Agent {
-  public Cooker cook;
-  public int time;
-  public KitchenEquipment equipment;
+  @Getter private Cooker cook;
+  @Getter private int time;
+  @Getter private KitchenEquipment equipment;
 
   public Operation(
       int id, SuperVisor supervisor, Cooker cook, KitchenEquipment equipment, int time) {

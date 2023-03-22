@@ -5,9 +5,9 @@ import ru.hse.message.Message;
 import java.util.List;
 
 public class RequireWaitingTimeFromProcessOut extends Message {
-    List<Process> processes;
+    public List<Process> processes;
 
-    RequireWaitingTimeFromProcessOut(List<Process> processes) {
+    public RequireWaitingTimeFromProcessOut(List<Process> processes) {
         this.processes = processes;
     }
 }

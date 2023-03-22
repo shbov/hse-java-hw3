@@ -3,9 +3,9 @@ package ru.hse.message.order;
 import ru.hse.message.Message;
 
 public class SendWaitingTImeOut extends Message {
-    int time;
+    public int time;
 
-    SendWaitingTImeOut(int time) {
+    public SendWaitingTImeOut(int time) {
         this.time = time;
     }
 }

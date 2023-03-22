@@ -3,9 +3,9 @@ package ru.hse.message.order;
 import ru.hse.message.Message;
 
 public class GetWaitingTimeIn extends Message {
-    int orderID;
+    public int dishID;
 
-    GetWaitingTimeIn(int orderID) {
-        this.orderID = orderID;
+    public GetWaitingTimeIn(int dishID) {
+        this.dishID = dishID;
     }
 }

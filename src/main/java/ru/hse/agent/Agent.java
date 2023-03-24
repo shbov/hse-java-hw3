@@ -79,9 +79,11 @@ public abstract class Agent<MessageType extends Message> implements Runnable {
         break;
       }
     }
-    }
+  }
 
-    private synchronized String generateName() {
-        return this.getClass().getSimpleName() + "-" + AgentRepository.findByType(this.getClass()).size();
-    }
+  private synchronized String generateName() {
+    return this.getClass().getSimpleName()
+        + "-"
+        + AgentRepository.findByType(this.getClass()).size();
+  }
 }

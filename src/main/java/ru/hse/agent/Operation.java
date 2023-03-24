@@ -1,6 +1,7 @@
 package ru.hse.agent;
 
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
@@ -10,16 +11,40 @@ import ru.hse.message.supervisor.ReservateEquipmentIn;
 @Slf4j
 @ToString
 public class Operation extends Agent {
-  @Getter private Cooker cook;
-  @Getter private int time;
-  @Getter private KitchenEquipment equipment;
+  @Getter
+  @JsonProperty("oper_id")
+  private int id;
+
+  @Getter
+  @JsonProperty("oper_proc")
+  private int processId;
+
+  @Getter
+  @JsonProperty("oper_card")
+  private int cardId;
+
+  @Getter
+  @JsonProperty("oper_coocker_id")
+  private int cookerId;
+
+  @Getter
+  @JsonProperty("oper_started")
+  private Date startDate;
+
+  @Getter
+  @JsonProperty("oper_ended")
+  private Date endDate;
+
+  @Getter
+  private KitchenEquipment equipment;
+
+  public Operation() {}
 
   public Operation(
-      int id, SuperVisor supervisor, Cooker cook, KitchenEquipment equipment, int time) {
+      int id, SuperVisor supervisor, int cook, KitchenEquipment equipment) {
     super(id, supervisor);
-    this.cook = cook;
+    this.cookerId = cook;
     this.equipment = equipment;
-    this.time = time;
   }
 
   @Override

@@ -1,13 +1,12 @@
 package ru.hse.agent;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 import ru.hse.message.order.GetWaitingTimeIn;
 import ru.hse.message.order.SendWaitingTImeOut;
-
-import java.util.List;
 
 @Slf4j
 @ToString
@@ -22,7 +21,6 @@ public class Order extends Agent {
 
     @Override
     protected void proceed(Message message) throws Exception {
-        log.info(Thread.currentThread().getName());
         //TODO он еще всякие продукты резервирует и все такое, в следующий раз
         if (message instanceof GetWaitingTimeIn getWaitingTimeIn) {
             int minute = 1000;
@@ -33,6 +31,7 @@ public class Order extends Agent {
                     }
                 }
             }
+
             log.info("Примерное время готовки заказа " + minute + " мин.");
             Message respond = new SendWaitingTImeOut(minute);
             //TODO отправить ответ

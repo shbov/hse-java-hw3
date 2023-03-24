@@ -1,5 +1,7 @@
 package ru.hse.agent;
 
+import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -7,10 +9,6 @@ import ru.hse.message.Message;
 import ru.hse.message.storage.CheckIngredientIn;
 import ru.hse.message.storage.FeedBackCheckIngredientOut;
 import ru.hse.message.storage.ReservedIgredientForDish;
-import ru.hse.utilities.AgentUtility;
-
-import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @ToString
@@ -36,7 +34,6 @@ public class Storage extends Agent {
 
     @Override
     protected void proceed(Message message) throws Exception {
-        log.info(Thread.currentThread().getName());
         if (message instanceof CheckIngredientIn checkIngredientIn) {
             if (storage.containsKey(checkIngredientIn.IngId)) {
                 if (storage.get(checkIngredientIn.IngId) > checkIngredientIn.amount) {
@@ -46,14 +43,16 @@ public class Storage extends Agent {
                 }
             }
             Message respond = new FeedBackCheckIngredientOut(false);
-            //TODO отправить ответ
-        } else if (message instanceof ReservedIgredientForDish reservedIgredientForDish) {
-            Ingredient product =
-                    new Ingredient(
-                            AgentUtility.generateID(Ingredient.class), reservedIgredientForDish.name, reservedIgredientForDish.amount, this.getSupervisor());
-            Ingredient.start(product);
-            storage.put(reservedIgredientForDish.IngId, storage.get(reservedIgredientForDish.IngId) - reservedIgredientForDish.amount);
-        } else {
+      // TODO отправить ответ
+    } else if (message instanceof ReservedIgredientForDish reservedIgredientForDish) {
+      Ingredient product = null;
+      //                    new Ingredient(AgentUtility.generateID(Ingredient.class),
+      // reservedIgredientForDish.name, reservedIgredientForDish.amount, this.getSupervisor());
+      Ingredient.start(product);
+      storage.put(
+          reservedIgredientForDish.IngId,
+          storage.get(reservedIgredientForDish.IngId) - reservedIgredientForDish.amount);
+    } else {
             System.out.println("Message not acceptable " + message.getClass().toString());
         }
     }

@@ -1,5 +1,6 @@
 package ru.hse.agent;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -9,16 +10,28 @@ import ru.hse.message.Message;
 @Slf4j
 @ToString
 public class KitchenEquipment extends Agent {
-  @Getter private String typeOfEquipment;
+  @Getter
+  @JsonProperty("equip_type")
+  private int type;
 
-  public KitchenEquipment(int id, String typeOfEquipment, SuperVisor supervisor) {
+  @Getter
+  @JsonProperty("equip_name")
+  private String name;
+
+  @Getter
+  @JsonProperty("equip_active")
+  private boolean active;
+
+  public KitchenEquipment(int id, SuperVisor supervisor, int type, String name, boolean active) {
     super(id, supervisor);
-    this.typeOfEquipment = typeOfEquipment;
+    this.type = type;
+    this.name = name;
+    this.active = active;
   }
 
   @Override
   protected void proceed(Message o) throws Exception {
     // а что делать сковородке, когда она просто сковородка
-    //TODO с бедолагой никто не общается
-    }
+    // TODO с бедолагой никто не общается
+  }
 }

@@ -27,7 +27,8 @@ public class Order extends Agent {
             for (Dish dish : dishes) {
                 if (dish.getId() == getWaitingTimeIn.dishID) {
                     for (Operation oper : dish.getProcess().getOperations()) {
-                        minute += oper.getTime();
+                        //TODO тут нужно адекватно время считать
+                        minute += 3;
                     }
                 }
             }

@@ -22,6 +22,8 @@ public class KitchenEquipment extends Agent {
   @JsonProperty("equip_active")
   private boolean active;
 
+  public KitchenEquipment(){}
+
   public KitchenEquipment(int id, SuperVisor supervisor, int type, String name, boolean active) {
     super(id, supervisor);
     this.type = type;

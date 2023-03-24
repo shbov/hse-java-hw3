@@ -36,6 +36,10 @@ public class Operation extends Agent {
   private Date endDate;
 
   @Getter
+  @JsonProperty("oper_active")
+  private Boolean active;
+
+  @Getter
   private KitchenEquipment equipment;
 
   public Operation() {}

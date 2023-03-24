@@ -27,7 +27,7 @@ public class Main {
     List<Visitor> visitors = DeserializeUtility.deserializeListOfObjects(json, "visitors", new TypeReference<>() {});
     visitors.forEach(Visitor::start);
     visitors.forEach(System.out::println);
-    
+
     Agent.stop(superVisor);
     visitors.forEach(Visitor::stop);
   }

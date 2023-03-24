@@ -1,7 +1,10 @@
 package ru.hse.agent;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import lombok.Getter;import lombok.ToString;
+import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
@@ -9,19 +12,38 @@ import ru.hse.message.Message;
 @Slf4j
 @ToString
 public class Dish extends Agent {
-  @Getter private Process process;
-  @Getter private List<Ingredient> products;
-  @Getter private int cost;
+  @Getter
+  @JsonProperty("dish_id")
+  private int id;
 
-  public Dish(int id, SuperVisor supervisor, Process process, List<Ingredient> products, int cost) {
+  @Getter
+  @JsonProperty("dish_name")
+  private String name;
+
+  @Getter
+  @JsonProperty("dish_descr")
+  private String description;
+
+  @Getter @JsonIgnore private Process process;
+
+  @Getter
+  @JsonProperty("dish_products")
+  private List<Ingredient> products;
+
+  public Dish() {}
+
+  public Dish(int id, SuperVisor supervisor, Process process, List<Ingredient> products) {
     super(id, supervisor);
     this.process = process;
     this.products = products;
-    this.cost = cost;
+  }
+
+  public int getCost() {
+    return 0; // todo compute cost price
   }
 
   @Override
   protected void proceed(Message o) throws Exception {
-    //TODO с бедолагой никто не общается
+    // TODO с бедолагой никто не общается
   }
 }

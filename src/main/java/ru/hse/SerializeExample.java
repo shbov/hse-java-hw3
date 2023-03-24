@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import ru.hse.agent.Dish;
 import ru.hse.agent.Ingredient;
 import ru.hse.agent.Visitor;
 import ru.hse.utilities.DeserializeUtility;
@@ -17,7 +18,7 @@ public class SerializeExample {
     try {
       // путь к нужному файлу (все json в находятся в /src/main/resources);
 
-      FileInputStream fis = new FileInputStream("src/main/resources/visitors.json");
+      FileInputStream fis = new FileInputStream("src/main/resources/dishes.json");
       String json = IOUtils.toString(fis, StandardCharsets.UTF_8);
 
       // выбираем нужен тип, keyword = ключ для массива объеков в json
@@ -27,8 +28,8 @@ public class SerializeExample {
       // и как и где их использовать
 
       // todo : dish_cards еще не делал, можно по аналогии добавить
-      List<Visitor> myObjects =
-          DeserializeUtility.deserializeListOfObjects(json, "visitors", new TypeReference<>() {});
+      List<Dish> myObjects =
+          DeserializeUtility.deserializeListOfObjects(json, "dishes", new TypeReference<>() {});
       myObjects.forEach(System.out::println);
     }  catch (IOException e) {
       log.error(e.getMessage());

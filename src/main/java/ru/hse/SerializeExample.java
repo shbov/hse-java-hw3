@@ -14,9 +14,18 @@ import ru.hse.utilities.DeserializeUtility;
 public class SerializeExample {
   public static void main(String[] args) {
     try {
+      // путь к нужному файлу (все json в находятся в /src/main/resources);
+
       FileInputStream fis = new FileInputStream("src/main/resources/products.json");
       String json = IOUtils.toString(fis, StandardCharsets.UTF_8);
 
+      // выбираем нужен тип, keyword = ключ для массива объеков в json
+      // (например, в cookers.json = "cookers": [...] => keyword = "cookers")
+
+      // еще я сделал сущности без агентов, они в папочке entity, надо подумать нужны ли они
+      // и как и где их использовать
+
+      // todo : dish_cards еще не делал, можно по аналогии добавить
       List<Ingredient> myObjects = DeserializeUtility.deserializeListOfObjects(json, "products", new TypeReference<>() {});
       myObjects.forEach(System.out::println);
     }  catch (IOException e) {

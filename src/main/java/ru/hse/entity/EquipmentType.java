@@ -16,7 +16,8 @@ public class EquipmentType {
   @Getter
   private String name;
 
-  EquipmentType(){}
+  EquipmentType() {}
+
   EquipmentType(int id, String name) {
     this.id = id;
     this.name = name;

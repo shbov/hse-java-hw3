@@ -8,8 +8,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @UtilityClass
+/*
+Утилита, позволяющая быстро десериализовать список объектов одного типа
+ */
 public class DeserializeUtility {
-
+  /*
+  Утилита, позволяющая быстро десериализовать список объектов одного типа
+   */
   public static <T> T deserializeListOfObjects(
       String json, String keyword, final TypeReference<T> type) {
 

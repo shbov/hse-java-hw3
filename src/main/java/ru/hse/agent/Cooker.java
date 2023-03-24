@@ -41,7 +41,7 @@ public class Cooker extends Agent {
     if (message instanceof ChangeOperationIn changeOperationIn) {
       action = changeOperationIn.operation;
       log.info("Start doing operation: " + action.getName());
-      Thread.sleep(  100000);
+      Thread.sleep(100000);
       log.info("I'm done operation: " + action.getName());
     } else {
       System.out.println("Message not acceptable " + message.getClass().toString());

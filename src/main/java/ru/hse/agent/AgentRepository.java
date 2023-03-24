@@ -21,7 +21,7 @@ public class AgentRepository {
       AGENTS.add(agent);
     }
 
-    log.debug("Agent registered: {}", agent.getName());
+    log.info("Agent registered: {}", agent.getName());
   }
 
   /**
@@ -32,7 +32,7 @@ public class AgentRepository {
   public static synchronized void remove(Agent<?> agent) {
     AGENTS.remove(agent);
 
-    log.debug("Agent removed from repository: {}", agent.getName());
+    log.info("Agent removed from repository: {}", agent.getName());
   }
 
   /**

@@ -1,23 +1,22 @@
 package ru.hse.agent;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import ru.hse.message.Message;
 import ru.hse.utilities.DeserializeUtility;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-
 @Slf4j
 public class SuperVisor extends Agent {
-  List<Ingredient> myIngredients;
-  List<KitchenEquipment> MyEquipments;
-  List<Cooker> MyCookers;
-
-  List<Operation> MyOperations;
+  @Getter private List<Ingredient> myIngredients;
+  @Getter private List<KitchenEquipment> myEquipments;
+  @Getter private List<Cooker> myCookers;
+  @Getter private List<Operation> myOperations;
 
   public SuperVisor(int id) {
 
@@ -25,31 +24,34 @@ public class SuperVisor extends Agent {
     try {
       FileInputStream fis = new FileInputStream("src/main/resources/products.json");
       String json = IOUtils.toString(fis, StandardCharsets.UTF_8);
-      myIngredients = DeserializeUtility.deserializeListOfObjects(json, "products", new TypeReference<>() {});
+      myIngredients =
+          DeserializeUtility.deserializeListOfObjects(json, "products", new TypeReference<>() {});
       myIngredients.forEach(System.out::println);
 
       FileInputStream fisCook = new FileInputStream("src/main/resources/cookers.json");
       String jsonCook = IOUtils.toString(fisCook, StandardCharsets.UTF_8);
-      MyCookers = DeserializeUtility.deserializeListOfObjects(jsonCook, "cookers", new TypeReference<>() {});
-      MyCookers.forEach(System.out::println);
+      myCookers =
+          DeserializeUtility.deserializeListOfObjects(
+              jsonCook, "cookers", new TypeReference<>() {});
+      myCookers.forEach(System.out::println);
 
       FileInputStream fisEq = new FileInputStream("src/main/resources/equipment.json");
       String jsonEq = IOUtils.toString(fisEq, StandardCharsets.UTF_8);
-      MyEquipments = DeserializeUtility.deserializeListOfObjects(jsonEq, "equipment", new TypeReference<>() {});
-      MyEquipments.forEach(System.out::println);
+      myEquipments =
+          DeserializeUtility.deserializeListOfObjects(
+              jsonEq, "equipment", new TypeReference<>() {});
+      myEquipments.forEach(System.out::println);
 
       FileInputStream fisOp = new FileInputStream("src/main/resources/operation_log.json");
       String jsonOp = IOUtils.toString(fisOp, StandardCharsets.UTF_8);
-      MyOperations = DeserializeUtility.deserializeListOfObjects(jsonOp, "operation_log", new TypeReference<>() {});
-      MyOperations.forEach(System.out::println);
+      myOperations =
+          DeserializeUtility.deserializeListOfObjects(
+              jsonOp, "operation_log", new TypeReference<>() {});
+      myOperations.forEach(System.out::println);
 
-
-    }  catch (IOException e) {
+    } catch (IOException e) {
       log.error(e.getMessage());
     }
-
-
-
   }
 
   @Override

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import lombok.Getter;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
@@ -13,6 +14,7 @@ import ru.hse.message.Message;
  * @param <MessageType> тип обрабатываемых сообщений
  */
 @Slf4j
+@ToString
 public abstract class Agent<MessageType extends Message> implements Runnable {
   private final BlockingQueue<MessageType> messageQueue = new LinkedBlockingQueue<>();
   @JsonIgnore @Getter private final SuperVisor supervisor;
@@ -37,12 +39,16 @@ public abstract class Agent<MessageType extends Message> implements Runnable {
 
     agent.workingThread = new Thread(agent);
     agent.workingThread.start();
+
+    log.info("Agent {} started", agent.getName());
   }
 
   /** Останавливает работу агента */
   public static synchronized void stop(Agent<?> agent) {
     AgentRepository.remove(agent);
     agent.workingThread.interrupt();
+
+    log.info("Agent {} finished", agent.getName());
   }
 
   /**
@@ -67,9 +73,9 @@ public abstract class Agent<MessageType extends Message> implements Runnable {
       try {
         MessageType message = messageQueue.take();
 
-        log.debug("Agent {} received message {}", this.name, message.getId());
+        log.info("Agent {} received message {}", this.name, message.getId());
         proceed(message);
-        log.debug("Agent {} completed message {}", this.name, message.getId());
+        log.info("Agent {} completed message {}", this.name, message.getId());
 
       } catch (InterruptedException e) {
         log.info("Agent {} was interrupted", name);

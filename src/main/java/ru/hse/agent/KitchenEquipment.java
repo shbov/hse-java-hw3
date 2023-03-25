@@ -2,6 +2,7 @@ package ru.hse.agent;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
@@ -14,7 +15,7 @@ public class KitchenEquipment extends Agent {
   @JsonProperty("equip_type")
   private int type;
 
-  @Getter
+  @Getter @Setter
   @JsonProperty("equip_active")
   private boolean active;
 

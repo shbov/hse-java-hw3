@@ -4,6 +4,7 @@
       "id": 1,
       "name": "Я супер операция",
       "duration": 10,
+      "equip_type": 2,
       "products": [
         {
           "id": 18,

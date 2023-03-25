@@ -3,6 +3,7 @@ package ru.hse.agent;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
@@ -14,7 +15,7 @@ public class Cooker extends Agent {
   @JsonIgnore public Operation action;
 
   @JsonProperty("cook_active")
-  @Getter
+  @Getter @Setter
   private boolean active;
 
   public Cooker() {}

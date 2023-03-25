@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
@@ -18,19 +19,15 @@ public class Operation extends Agent {
   @JsonProperty("oper_proc")
   private int processId;
 
-  @Getter
-  @JsonProperty("oper_coocker_id")
-  private int cookerId;
-
-  @Getter
+  @Getter @Setter
   @JsonProperty("oper_started")
   private Date startDate;
 
-  @Getter
+  @Getter @Setter
   @JsonProperty("oper_ended")
   private Date endDate;
 
-  @Getter
+  @Getter @Setter
   @JsonProperty("oper_active")
   private Boolean active;
 
@@ -38,8 +35,15 @@ public class Operation extends Agent {
   @JsonProperty("duration")
   private double duration;
 
-  @Getter
+  @Getter @Setter
   private KitchenEquipment equipment;
+
+  @Getter @Setter
+  private Cooker cooker;
+
+  @Getter @Setter
+  @JsonProperty("equip_type")
+  private int equipmentId;
 
   @Getter
   @JsonProperty("products")
@@ -48,9 +52,8 @@ public class Operation extends Agent {
   public Operation() {}
 
   public Operation(
-      int id, SuperVisor supervisor, int cook, KitchenEquipment equipment) {
+      int id, SuperVisor supervisor, KitchenEquipment equipment) {
     super(id, supervisor);
-    this.cookerId = cook;
     this.equipment = equipment;
   }
 
@@ -61,10 +64,22 @@ public class Operation extends Agent {
     Message requestEquipment = new ReservateEquipmentIn(this.getId());
 
   }
-  // продукты для операции
+  protected void processing() throws InterruptedException {
+    Thread.sleep((int)duration*10);
+    Date currentDate = new Date();
+    log.info("Process has ended "+currentDate+ this);
+    cooker.setActive(false);
+    equipment.setActive(false);
+    this.setEndDate(currentDate);
+  }
 
   @JsonProperty("id")
   private void unpackId(int id) {
     setId(id);
+  }
+
+  public void findAvailableEquipment() {
+    // ..
+    // equipment = find by id (" equipmentId ");
   }
 }

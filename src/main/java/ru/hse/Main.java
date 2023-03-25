@@ -38,7 +38,7 @@ public class Main {
             Visitor.start(vis);
             Message mess = new RequestMenuOut(vis.getId());
             superVisor.registerMessage(mess);
-            Thread.sleep(100000);
+            Thread.sleep(100);
         }
         Agent.stop(superVisor);
         visitors.forEach(Visitor::stop);
@@ -48,7 +48,8 @@ public class Main {
         FileInputStream fisOp = new FileInputStream("src/main/resources/operation_log.json");
         String jsonOp = IOUtils.toString(fisOp, StandardCharsets.UTF_8);
         myOperations =
-                DeserializeUtility.deserializeListOfObjects(jsonOp, "operations", new TypeReference<>() {});
+                DeserializeUtility.deserializeListOfObjects(jsonOp, "operations", new TypeReference<>() {
+                });
         myOperations.forEach(System.out::println);
     }
 }

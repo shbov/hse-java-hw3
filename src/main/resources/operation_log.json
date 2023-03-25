@@ -1,24 +1,15 @@
 {
-  "operation_log": [
+  "operations": [
     {
-    "id": 82325,
-    "oper_proc": 434,
-    "oper_card": 518,
-    "oper_coocker_id": 15,
-    "oper_active": false
-  },
-    {
-      "id": 82326,
-      "oper_proc": 435,
-      "oper_card": 518,
-      "oper_coocker_id": 15,
-      "oper_active": false
-    },
-    {
-      "id": 82327,
-      "oper_proc": 436,
-      "oper_card": 518,
-      "oper_coocker_id": 16,
-      "oper_active": false
-    }]
+      "id": 82325,
+      "name": "Я супер операция",
+      "time": 10,
+      "products": [
+        {
+          "id": 18,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
 }

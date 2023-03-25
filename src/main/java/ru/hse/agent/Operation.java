@@ -19,10 +19,6 @@ public class Operation extends Agent {
   private int processId;
 
   @Getter
-  @JsonProperty("oper_card")
-  private int cardId;
-
-  @Getter
   @JsonProperty("oper_coocker_id")
   private int cookerId;
 

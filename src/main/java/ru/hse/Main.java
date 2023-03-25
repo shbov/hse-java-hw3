@@ -21,6 +21,8 @@ import java.util.List;
 public class Main {
 
   public static void main(String[] args) throws IOException, InterruptedException {
+    ApiServer.start();
+    
     SuperVisor superVisor = new SuperVisor(AgentUtility.generateID(SuperVisor.class));
     Agent.start(superVisor);
 

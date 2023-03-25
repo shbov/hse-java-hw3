@@ -32,7 +32,7 @@ public class Visitor extends Agent {
                 }
               });
 
-      Agent supervisitor = AgentRepository.findByTypeAndId(Visitor.class, sendMenuOut.idSupervisor);
+      Agent supervisitor = AgentRepository.findByTypeAndId(SuperVisor.class, sendMenuOut.idSupervisor);
       supervisitor.registerMessage(respond);
     } else {
       System.out.println("Message not acceptable " + message.getClass().toString());

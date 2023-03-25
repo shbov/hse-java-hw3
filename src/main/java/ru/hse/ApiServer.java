@@ -10,7 +10,7 @@ import org.apache.commons.io.IOUtils;
 
 @Slf4j
 public class ApiServer {
-  public static void main(String[] args) {
+  public static void start() {
     get(
         "/api/logs",
         (req, res) -> {

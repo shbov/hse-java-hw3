@@ -53,7 +53,7 @@ public class Storage extends Agent {
           reservedIgredientForDish.IngId,
           storage.get(reservedIgredientForDish.IngId) - reservedIgredientForDish.amount);
     } else {
-            System.out.println("Message not acceptable " + message.getClass().toString());
+            log.error("Message not acceptable " + message.getClass().toString());
         }
     }
 }

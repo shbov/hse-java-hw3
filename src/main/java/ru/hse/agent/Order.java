@@ -37,7 +37,7 @@ public class Order extends Agent {
             Message respond = new SendWaitingTImeOut(minute);
             //TODO отправить ответ
         }else {
-          System.out.println("Message not acceptable " + message.getClass().toString());
+          log.error("Message not acceptable " + message.getClass().toString());
         }
 
     }

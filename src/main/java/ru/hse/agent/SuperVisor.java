@@ -90,7 +90,7 @@ public class SuperVisor extends Agent {
             Visitor visitor =  (Visitor)AgentRepository.findByTypeAndId(Visitor.class, requestMenuOut.idVisitor);
             visitor.registerMessage(respond);
         } else {
-            System.out.println("Message not acceptable " + message.getClass().toString());
+            log.error("Message not acceptable " + message.getClass().toString());
         }
     }
 }

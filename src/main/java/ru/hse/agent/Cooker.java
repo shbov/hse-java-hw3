@@ -40,7 +40,7 @@ public class Cooker extends Agent {
       Thread.sleep(100000);
       log.info("I'm done operation: " + action.getName());
     } else {
-      System.out.println("Message not acceptable " + message.getClass().toString());
+      log.error("Message not acceptable " + message.getClass().toString());
     }
   }
 

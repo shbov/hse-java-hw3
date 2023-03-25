@@ -33,7 +33,6 @@ public class SuperVisor extends Agent {
 
       initCookers();
       initEquipment();
-      initOperations();
       initDishes();
     } catch (IOException e) {
       log.error(e.getMessage());
@@ -46,14 +45,6 @@ public class SuperVisor extends Agent {
     myDishes =
         DeserializeUtility.deserializeListOfObjects(jsonDish, "dishes", new TypeReference<>() {});
     myDishes.forEach(System.out::println);
-  }
-
-  private void initOperations() throws IOException {
-    FileInputStream fisOp = new FileInputStream("src/main/resources/operation_log.json");
-    String jsonOp = IOUtils.toString(fisOp, StandardCharsets.UTF_8);
-    myOperations =
-        DeserializeUtility.deserializeListOfObjects(jsonOp, "operations", new TypeReference<>() {});
-    myOperations.forEach(System.out::println);
   }
 
   private void initEquipment() throws IOException {
@@ -78,7 +69,7 @@ public class SuperVisor extends Agent {
     if (message instanceof CreateOrderIn createOrderIn) {
       Order order =
           new Order(
-              AgentUtility.generateID(Order.class), this.getSupervisor(), createOrderIn.dishes);
+              AgentUtility.generateID(Order.class), this, createOrderIn.dishes);
       Order.start(order);
       order.registerMessage(createOrderIn);
     } else if (message instanceof RequestMenuOut requestMenuOut) {

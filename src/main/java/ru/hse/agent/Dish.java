@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import ru.hse.Main;
 import ru.hse.message.Message;
 
 // такое чувство будто он не обменивается сообщениями
@@ -49,7 +50,7 @@ public class Dish extends Agent {
     this.operations = operations.stream()
             .map(
                 id ->
-                    getSupervisor().getMyOperations().stream()
+                        Main.getMyOperations().stream()
                         .filter(so -> so.getId() == id)
                         .findFirst()
                         .orElse(null))

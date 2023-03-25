@@ -35,18 +35,20 @@ public class Storage extends Agent {
               .orElse(null);
       if (product != null) {
         if (product.getQuantity() > checkIngredientIn.getQuantity()) {
+          log.info("Checked product"+ true);
           Message respond = new FeedBackCheckIngredientOut(true);
         } else {
+          log.info("Checked product"+ false);
           Message respond = new FeedBackCheckIngredientOut(false);
         }
       }
       Message respond = new FeedBackCheckIngredientOut(false);
     } else if (message instanceof ReservedIgredientForDish reservedIgredientForDish) {
-      Ingredient ingredient = null;
-      new Ingredient(
+      Ingredient ingredient = new Ingredient(
           AgentUtility.generateID(Ingredient.class),
           reservedIgredientForDish.amount,
           this.getSupervisor().getId());
+      log.info("Reserved "+ ingredient);
       Ingredient.start(ingredient);
       Product product = products.stream()
               .filter(p -> p.getId() == reservedIgredientForDish.getId())

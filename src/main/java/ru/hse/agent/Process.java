@@ -14,6 +14,7 @@ public class Process extends Agent {
   public Process(int id, SuperVisor supervisor, List<Operation> operations) {
     super(id, supervisor);
     this.operations = operations;
+
   }
 
   @Override

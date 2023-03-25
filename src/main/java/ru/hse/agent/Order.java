@@ -1,6 +1,8 @@
 package ru.hse.agent;
 
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,7 +21,7 @@ public class Order extends Agent {
     private List<Dish> dishes;
 
     @Getter  @Setter
-    private List<Process> processes;
+    private List<Process> processes = new CopyOnWriteArrayList<>();
 
     public Order(int id, SuperVisor supervisor, List<Dish> dishes) {
         super(id, supervisor);
@@ -30,6 +32,7 @@ public class Order extends Agent {
     protected void proceed(Message message) throws Exception {
         if (message instanceof CreateOrderIn createOrderIn) {
             for(Dish dish :createOrderIn.dishes){
+                log.info("Reservate product");
                 for( Operation oper: dish.getOperations()){
                     for (Ingredient ing: oper.getProducts() ) {
                         Message request = new ReservateIngredientIn(ing.getId(),ing.getQuantity());
@@ -40,6 +43,7 @@ public class Order extends Agent {
                         new Process(
                                 AgentUtility.generateID(Order.class), this.getSupervisor(), dish.getOperations());
                 Process.start(cooking);
+                log.info("Order: Process start"+ cooking);
                 processes.add(cooking);
             }
         }

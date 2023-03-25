@@ -1,6 +1,5 @@
 package ru.hse.agent;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import lombok.Getter;
@@ -17,7 +16,6 @@ public class Dish extends Agent {
   private String description;
 
   @Getter
-  @JsonProperty("operations")
   private List<Operation> operations;
 
   public Dish() {}
@@ -44,5 +42,17 @@ public class Dish extends Agent {
   @JsonProperty("id")
   private void unpackId(int id) {
     setId(id);
+  }
+
+  @JsonProperty("operations")
+  private void unpackOperations(List<Integer> operations) {
+    this.operations = operations.stream()
+            .map(
+                id ->
+                    getSupervisor().getMyOperations().stream()
+                        .filter(so -> so.getId() == id)
+                        .findFirst()
+                        .orElse(null))
+            .toList();
   }
 }

@@ -35,6 +35,10 @@ public class Operation extends Agent {
   private Boolean active;
 
   @Getter
+  @JsonProperty("duration")
+  private double duration;
+
+  @Getter
   private KitchenEquipment equipment;
 
   @Getter

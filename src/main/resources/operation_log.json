@@ -3,8 +3,8 @@
     {
       "id": 82325,
       "name": "Я супер операция",
-      "time": 10,
-      "ingredients": [
+      "duration": 10,
+      "products": [
         {
           "id": 18,
           "quantity": 0.01

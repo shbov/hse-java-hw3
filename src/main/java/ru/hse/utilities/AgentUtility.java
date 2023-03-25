@@ -8,6 +8,14 @@ import ru.hse.agent.AgentRepository;
 @UtilityClass
 @Slf4j
 public class AgentUtility {
+
+  /**
+   * Получаем уникальный айди агента
+   *
+   * @param className Класс агента
+   * @return айди агента
+   * @param <T> Агент
+   */
   public static synchronized <T extends Agent<?>> int generateID(Class<T> className) {
     int possibleId = AgentRepository.findByType(className).size() + 1;
 

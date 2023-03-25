@@ -3,6 +3,7 @@ package ru.hse.agent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
@@ -23,7 +24,7 @@ public class Product extends Agent {
   @JsonProperty("prod_item_unit")
   private String unit;
 
-  @Getter
+  @Getter @Setter
   @JsonProperty("prod_item_quantity")
   private double quantity;
 

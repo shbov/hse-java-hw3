@@ -2,6 +2,7 @@ package ru.hse.agent;
 
 import java.util.List;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
@@ -17,6 +18,9 @@ public class Order extends Agent {
     @Getter
     private List<Dish> dishes;
 
+    @Getter  @Setter
+    private List<Process> processes;
+
     public Order(int id, SuperVisor supervisor, List<Dish> dishes) {
         super(id, supervisor);
         this.dishes = dishes;
@@ -27,9 +31,16 @@ public class Order extends Agent {
         if (message instanceof CreateOrderIn createOrderIn) {
             for(Dish dish :createOrderIn.dishes){
                 for( Operation oper: dish.getOperations()){
-                    for ()
-                    Message request = new ReservateIngredientIn(oper.getProducts());
+                    for (Ingredient ing: oper.getProducts() ) {
+                        Message request = new ReservateIngredientIn(ing.getId(),ing.getQuantity());
+                        getSupervisor().getStorage().registerMessage(request);
+                    }
                 }
+                Process cooking =
+                        new Process(
+                                AgentUtility.generateID(Order.class), this.getSupervisor(), dish.getOperations());
+                Process.start(cooking);
+                processes.add(cooking);
             }
         }
         else if (message instanceof GetWaitingTimeIn getWaitingTimeIn) {

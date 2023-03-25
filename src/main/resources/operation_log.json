@@ -4,10 +4,10 @@
       "id": 82325,
       "name": "Я супер операция",
       "time": 10,
-      "products": [
+      "ingredients": [
         {
           "id": 18,
-          "quantity": 1
+          "quantity": 0.01
         }
       ]
     }

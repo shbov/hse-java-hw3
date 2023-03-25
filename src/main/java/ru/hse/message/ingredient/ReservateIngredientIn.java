@@ -1,13 +1,16 @@
 package ru.hse.message.ingredient;
 
+import lombok.Getter;
 import ru.hse.message.Message;
 
 public class ReservateIngredientIn extends Message {
-    int IngId;
-    int amount;
+    @Getter
+    private int ingId;
+    @Getter
+    private double quantity;
 
-    ReservateIngredientIn(int IngId, int amount) {
-        this.IngId = IngId;
-        this.amount = amount;
+    public ReservateIngredientIn(int IngId, double amount) {
+        this.ingId = IngId;
+        this.quantity = amount;
     }
 }

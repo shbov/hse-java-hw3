@@ -2,6 +2,7 @@ package ru.hse.agent;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
@@ -10,10 +11,16 @@ import ru.hse.message.Message;
 @ToString(callSuper = true)
 public class Ingredient extends Agent {
   @Getter private int productId;
-  @Getter private double quantity;
+  @Getter @Setter
+  private double quantity;
   @Getter private int supervisorId;
+  public Ingredient(){}
 
-  public Ingredient() {}
+  public Ingredient(int productId,double quantity,int supervisorId) {
+    this.productId=productId;
+    this.quantity=quantity;
+    this.supervisorId=supervisorId;
+  }
 
   @Override
   protected void proceed(Message message) throws Exception {

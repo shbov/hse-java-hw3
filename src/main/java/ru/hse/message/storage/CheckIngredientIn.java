@@ -1,13 +1,17 @@
 package ru.hse.message.storage;
 
+import lombok.Getter;
 import ru.hse.message.Message;
 
 public class CheckIngredientIn extends Message {
-    public int IngId;
-    public int amount;
+    @Getter
+    private int IngId;
 
-    CheckIngredientIn(int IngId, int amount) {
+    @Getter
+    private int quantity;
+
+    public CheckIngredientIn(int IngId, int amount) {
         this.IngId = IngId;
-        this.amount = amount;
+        this.quantity = amount;
     }
 }

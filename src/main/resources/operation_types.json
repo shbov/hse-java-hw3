@@ -2,11 +2,11 @@
   "operation_types": [
     {
       "id": 1,
-      "oper_type_name": "frying"
+      "name": "frying"
     },
     {
       "id": 17,
-      "oper_type_name": "pouring boiled water into a paper cup"
+      "name": "pouring boiled water into a paper cup"
     }
   ]
 }

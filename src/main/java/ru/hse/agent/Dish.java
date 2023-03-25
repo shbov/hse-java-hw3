@@ -16,18 +16,15 @@ public class Dish extends Agent {
   @JsonProperty("dish_descr")
   private String description;
 
-  @Getter @JsonIgnore private Process process;
-
   @Getter
-  @JsonProperty("dish_products")
-  private List<Ingredient> products;
+  @JsonProperty("operations")
+  private List<Operation> operations;
 
   public Dish() {}
 
-  public Dish(int id, SuperVisor supervisor, Process process, List<Ingredient> products) {
+  public Dish(int id, SuperVisor supervisor, List<Operation> operations) {
     super(id, supervisor);
-    this.process = process;
-    this.products = products;
+    this.operations = operations;
   }
 
   public int getCost() {

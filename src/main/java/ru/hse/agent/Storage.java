@@ -9,6 +9,7 @@ import ru.hse.message.Message;
 import ru.hse.message.storage.CheckIngredientIn;
 import ru.hse.message.storage.FeedBackCheckIngredientOut;
 import ru.hse.message.storage.ReservedIgredientForDish;
+import ru.hse.utilities.AgentUtility;
 
 @Slf4j
 @ToString(callSuper = true)
@@ -46,8 +47,8 @@ public class Storage extends Agent {
       // TODO отправить ответ
     } else if (message instanceof ReservedIgredientForDish reservedIgredientForDish) {
       Ingredient product = null;
-      //                    new Ingredient(AgentUtility.generateID(Ingredient.class),
-      // reservedIgredientForDish.name, reservedIgredientForDish.amount, this.getSupervisor());
+                          new Ingredient(AgentUtility.generateID(Ingredient.class),
+       reservedIgredientForDish.name, reservedIgredientForDish.amount, this.getSupervisor());
       Ingredient.start(product);
       storage.put(
           reservedIgredientForDish.IngId,

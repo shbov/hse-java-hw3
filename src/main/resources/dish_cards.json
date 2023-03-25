@@ -34,6 +34,19 @@
             }
           ]
         }
+      ],
+      "dish_products" : [
+        {
+          "id": 172,
+          "prod_item_type": 18,
+          "name": "Princess Nuri tea in bags",
+          "prod_item_company": "ORIMI",
+          "prod_item_unit": "pc.",
+          "prod_item_quantity": 874,
+          "prod_item_cost": 1.5,
+          "prod_item_delivered": "2023-01-15T08:10:36",
+          "prod_item_valid_until": "2024-12-31T23:59:59"
+        }
       ]
     }
   ]

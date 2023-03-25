@@ -2,6 +2,8 @@ package ru.hse.agent;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +40,10 @@ public class Operation extends Agent {
 
   @Getter
   private KitchenEquipment equipment;
+
+  @Getter
+  @JsonProperty("products")
+  private List<Ingredient> products;
 
   public Operation() {}
 

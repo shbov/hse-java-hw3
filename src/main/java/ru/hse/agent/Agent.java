@@ -1,9 +1,11 @@
 package ru.hse.agent;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
@@ -14,12 +16,21 @@ import ru.hse.message.Message;
  * @param <MessageType> тип обрабатываемых сообщений
  */
 @Slf4j
-@ToString
+@ToString(callSuper = true)
 public abstract class Agent<MessageType extends Message> implements Runnable {
   private final BlockingQueue<MessageType> messageQueue = new LinkedBlockingQueue<>();
   @JsonIgnore @Getter private final SuperVisor supervisor;
-  @Getter private final int id;
-  @Getter protected String name;
+
+  @JsonProperty("id")
+  @Getter
+  @Setter
+  private int id;
+
+  @Getter
+  @Setter
+  @JsonProperty("name")
+  private String name;
+
   @Getter @JsonIgnore private Thread workingThread;
 
   public Agent() {
@@ -90,6 +101,6 @@ public abstract class Agent<MessageType extends Message> implements Runnable {
   private synchronized String generateName() {
     return this.getClass().getSimpleName()
         + "-"
-        + AgentRepository.findByType(this.getClass()).size();
+        + getId();
   }
 }

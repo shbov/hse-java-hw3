@@ -8,12 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
 @Slf4j
-@ToString
+@ToString(callSuper = true)
 public class Ingredient extends Agent {
-  @Getter
-  @JsonProperty("prod_item_id")
-  private int id;
-
   @Getter
   @JsonProperty("prod_item_type")
   private int type;
@@ -25,10 +21,6 @@ public class Ingredient extends Agent {
   @Getter
   @JsonProperty("prod_item_unit")
   private String unit;
-
-  @Getter
-  @JsonProperty("prod_item_name")
-  private String name;
 
   @Getter
   @JsonProperty("prod_item_quantity")
@@ -60,7 +52,7 @@ public class Ingredient extends Agent {
     super(id, supervisor);
     this.type = type;
     this.company = company;
-    this.name = name;
+    setName("name");
     this.unit = unit;
     this.quantity = quantity;
     this.delivered = delivered;
@@ -70,5 +62,15 @@ public class Ingredient extends Agent {
   @Override
   protected void proceed(Message message) throws Exception {
     // TODO с бедолагой никто не общается
+  }
+
+  @JsonProperty("name")
+  private void unpackName(String name) {
+    setName(name);
+  }
+
+  @JsonProperty("id")
+  private void unpackId(int id) {
+    setId(id);
   }
 }

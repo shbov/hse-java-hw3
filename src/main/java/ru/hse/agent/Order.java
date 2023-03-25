@@ -9,7 +9,7 @@ import ru.hse.message.order.GetWaitingTimeIn;
 import ru.hse.message.order.SendWaitingTImeOut;
 
 @Slf4j
-@ToString
+@ToString(callSuper = true)
 public class Order extends Agent {
     @Getter
     private List<Dish> dishes;

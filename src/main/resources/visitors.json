@@ -1,12 +1,12 @@
 {
   "visitors": [
     {
-      "vis_name": "Visitor123",
-      "vis_id": 123
+      "name": "Visitor123",
+      "id": 123
     },
     {
-      "vis_name": "Visitor124",
-      "vis_id": 124
+      "name": "Visitor124",
+      "id": 124
     }
   ]
 }

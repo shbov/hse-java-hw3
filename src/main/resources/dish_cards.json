@@ -1,8 +1,8 @@
 {
   "dish_cards": [
     {
-      "card_id": 518,
-      "dish_name": "Princess Nuri tea bag in a paper cup",
+      "id": 518,
+      "name": "Princess Nuri tea bag in a paper cup",
       "card_descr": "pouring boiled water into a paper cup + 2 bags of sugar",
       "card_time": 0.15,
       "equip_type": 25,

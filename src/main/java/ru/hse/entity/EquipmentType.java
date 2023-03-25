@@ -6,7 +6,7 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@ToString
+@ToString(callSuper = true)
 public class EquipmentType {
   @JsonProperty("equip_type_id")
   @Getter

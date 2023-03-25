@@ -10,16 +10,8 @@ import ru.hse.message.Message;
 
 // такое чувство будто он не обменивается сообщениями
 @Slf4j
-@ToString
+@ToString(callSuper = true)
 public class Dish extends Agent {
-  @Getter
-  @JsonProperty("dish_id")
-  private int id;
-
-  @Getter
-  @JsonProperty("dish_name")
-  private String name;
-
   @Getter
   @JsonProperty("dish_descr")
   private String description;
@@ -45,5 +37,15 @@ public class Dish extends Agent {
   @Override
   protected void proceed(Message o) throws Exception {
     // TODO с бедолагой никто не общается
+  }
+
+  @JsonProperty("name")
+  private void unpackName(String name) {
+    setName(name);
+  }
+
+  @JsonProperty("id")
+  private void unpackId(int id) {
+    setId(id);
   }
 }

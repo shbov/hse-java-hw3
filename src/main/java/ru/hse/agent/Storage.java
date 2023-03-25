@@ -11,7 +11,7 @@ import ru.hse.message.storage.FeedBackCheckIngredientOut;
 import ru.hse.message.storage.ReservedIgredientForDish;
 
 @Slf4j
-@ToString
+@ToString(callSuper = true)
 public class Storage extends Agent {
     @Getter
     private List<Ingredient> activeIngredients;

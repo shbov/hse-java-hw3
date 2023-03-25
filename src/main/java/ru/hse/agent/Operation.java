@@ -10,12 +10,8 @@ import ru.hse.message.supervisor.ReservateCookerIn;
 import ru.hse.message.supervisor.ReservateEquipmentIn;
 
 @Slf4j
-@ToString
+@ToString(callSuper = true)
 public class Operation extends Agent {
-  @Getter
-  @JsonProperty("oper_id")
-  private int id;
-
   @Getter
   @JsonProperty("oper_proc")
   private int processId;
@@ -60,4 +56,9 @@ public class Operation extends Agent {
 
   }
   // продукты для операции
+
+  @JsonProperty("id")
+  private void unpackId(int id) {
+    setId(id);
+  }
 }

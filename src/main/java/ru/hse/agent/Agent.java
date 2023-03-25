@@ -19,7 +19,7 @@ public abstract class Agent<MessageType extends Message> implements Runnable {
   private final BlockingQueue<MessageType> messageQueue = new LinkedBlockingQueue<>();
   @JsonIgnore @Getter private final SuperVisor supervisor;
   @Getter private final int id;
-  @Getter private String name;
+  @Getter protected String name;
   @Getter @JsonIgnore private Thread workingThread;
 
   public Agent() {

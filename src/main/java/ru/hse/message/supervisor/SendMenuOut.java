@@ -7,7 +7,12 @@ import ru.hse.agent.Dish;
 import ru.hse.message.Message;
 
 @Slf4j
-public class SendMenuIn extends Message {
+public class SendMenuOut extends Message {
 
   public List<Dish> dishes = new CopyOnWriteArrayList<>();
+  public int idSupervisor;
+  public SendMenuOut(List<Dish> dishes, int idSupervisor){
+    this.dishes=dishes;
+    this.idSupervisor=idSupervisor;
+  }
 }

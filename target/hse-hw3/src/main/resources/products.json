@@ -1,0 +1,114 @@
+{
+  "products": [
+    {
+      "id": 191,
+      "prod_item_type": 11,
+      "name": "Frozen chicken",
+      "prod_item_company": "AO OMPK",
+      "prod_item_unit": "kilo",
+      "prod_item_quantity": 15.3,
+      "prod_item_cost": 190,
+      "prod_item_delivered": "2023-01-12T08:12:36",
+      "prod_item_valid_until": "2023-12-31T23:59:59"
+    },
+    {
+      "id": 10,
+      "prod_item_type": 1,
+      "name": "Tomato",
+      "prod_item_company": "AO OMPK",
+      "prod_item_unit": "kilo",
+      "prod_item_quantity": 15.3,
+      "prod_item_cost": 170,
+      "prod_item_delivered": "2023-01-12T08:12:36",
+      "prod_item_valid_until": "2023-12-31T23:59:59"
+    },
+    {
+      "id": 11,
+      "prod_item_type": 2,
+      "name": "Cucumber",
+      "prod_item_company": "AO OMPK",
+      "prod_item_unit": "kilo",
+      "prod_item_quantity": 17,
+      "prod_item_cost": 170,
+      "prod_item_delivered": "2023-01-12T08:12:36",
+      "prod_item_valid_until": "2023-12-31T23:59:59"
+    },
+    {
+      "id": 172,
+      "prod_item_type": 18,
+      "name": "Princess Nuri tea in bags",
+      "prod_item_company": "ORIMI",
+      "prod_item_unit": "pc.",
+      "prod_item_quantity": 874,
+      "prod_item_cost": 1.5,
+      "prod_item_delivered": "2023-01-15T08:10:36",
+      "prod_item_valid_until": "2024-12-31T23:59:59"
+    },
+    {
+      "id": 1,
+      "prod_item_type": 12,
+      "name": "Lipton ice tea",
+      "prod_item_company": "LIPTON",
+      "prod_item_unit": "pc.",
+      "prod_item_quantity": 874,
+      "prod_item_cost": 1.5,
+      "prod_item_delivered": "2023-01-15T08:10:36",
+      "prod_item_valid_until": "2024-12-31T23:59:59"
+    },
+    {
+      "id": 132,
+      "prod_item_type": 22,
+      "name": "Can of cola 0.33",
+      "prod_item_company": "Vimm-Bill-Dann",
+      "prod_item_unit": "pc.",
+      "prod_item_quantity": 0,
+      "prod_item_cost": 39,
+      "prod_item_delivered": "2023-01-11T09:22:36",
+      "prod_item_valid_until": "2025-12-31T23:59:59"
+    },
+    {
+      "id": 213,
+      "prod_item_type": 23,
+      "name": "Russian sugar in sticks",
+      "prod_item_company": "Russian sugar",
+      "prod_item_unit": "pc.",
+      "prod_item_quantity": 952,
+      "prod_item_cost": 0.4,
+      "prod_item_delivered": "2023-01-11T09:19:31",
+      "prod_item_valid_until": "2025-12-31T23:59:59"
+    },
+    {
+      "id": 251,
+      "prod_item_type": 24,
+      "name": "Drinking water Suzdalskaya",
+      "prod_item_company": "Suzdalskie napitki",
+      "prod_item_unit": "L",
+      "prod_item_quantity": 174.22,
+      "prod_item_cost": 11.45,
+      "prod_item_delivered": "2023-01-11T09:19:31",
+      "prod_item_valid_until": "2025-12-31T23:59:59"
+    },
+    {
+      "id": 133,
+      "prod_item_type": 12,
+      "name": "Paper cup 0.2",
+      "prod_item_company": "OOO KartonEco",
+      "prod_item_unit": "pc.",
+      "prod_item_quantity": 1032,
+      "prod_item_cost": 0.45,
+      "prod_item_delivered": "2023-01-12T08:12:36",
+      "prod_item_valid_until": "2026-12-31T23:59:59"
+    },
+    {
+      "id": 139,
+      "prod_item_type": 19,
+      "name": "Plastic stirrer",
+      "prod_item_company": "Monplast EOOD",
+      "prod_item_unit": "pc.",
+      "prod_item_quantity": 12874,
+      "prod_item_cost": 0.19,
+      "prod_item_delivered": "2023-01-12T08:10:36",
+      "prod_item_valid_until": "2026-12-31T23:59:59"
+    }
+  ]
+}

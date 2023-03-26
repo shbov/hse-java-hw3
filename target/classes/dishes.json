@@ -1,0 +1,28 @@
+{
+  "dishes": [
+    {
+      "id" : 1,
+      "name": "Princess Nuri tea bag in a paper cup",
+      "dish_descr": "pouring boiled water into a paper cup + 2 bags of sugar",
+      "operations": [
+        1
+      ]
+    },
+    {
+      "id" : 2,
+      "name": "Lipton ice tea",
+      "dish_descr": "with some ice",
+      "operations": [
+        1
+      ]
+    },
+    {
+      "id" : 2,
+      "name": "Salad",
+      "dish_descr": "with tomato",
+      "operations": [
+        2
+      ]
+    }
+  ]
+}

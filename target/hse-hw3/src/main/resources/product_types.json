@@ -1,0 +1,39 @@
+{
+  "product_types": [
+    {
+      "id": 11,
+      "name": "Frozen chicken",
+      "prod_is_food": true
+    },
+    {
+      "id": 18,
+      "name": "Black tea in bags",
+      "prod_is_food": true
+    },
+    {
+      "id": 22,
+      "name": "Can of cola 0.33",
+      "prod_is_food": true
+    },
+    {
+      "id": 23,
+      "name": "Sugar in sticks",
+      "prod_is_food": true
+    },
+    {
+      "id": 24,
+      "name": "Drinking water",
+      "prod_is_food": true
+    },
+    {
+      "id": 12,
+      "name": "Paper cup 0.2",
+      "prod_is_food": false
+    },
+    {
+      "id": 19,
+      "name": "Plastic stirrer",
+      "prod_is_food": false
+    }
+  ]
+}

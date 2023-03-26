@@ -1,0 +1,32 @@
+{
+  "operations": [
+    {
+      "id": 1,
+      "name": "Заварить чай",
+      "duration": 15,
+      "equip_type": 2,
+      "products": [
+        {
+          "id": 18,
+          "quantity": 0.01
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Шинкуем салатик",
+      "duration": 20,
+      "equip_type": 2,
+      "products": [
+        {
+          "id": 1,
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}

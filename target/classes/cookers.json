@@ -1,0 +1,19 @@
+{
+  "cookers": [
+    {
+      "id": 15,
+      "name": "Ivanov A. S.",
+      "cook_active": false
+    },
+    {
+      "id": 16,
+      "name": "Petrov I. V.",
+      "cook_active": false
+    },
+    {
+      "id": 14,
+      "name": "Sidorov G. S.",
+      "cook_active": false
+    }
+  ]
+}

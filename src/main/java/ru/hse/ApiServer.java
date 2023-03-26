@@ -21,12 +21,16 @@ import spark.Response;
 @UtilityClass
 public class ApiServer {
   public static void start() {
-    path(
-        "/api",
-        () -> {
-          post("/visitor-order", "application/json", ApiServer::VisitorOrderMethod);
-          get("/logs", ApiServer::getLogsMethod);
-        });
+    try {
+      path(
+          "/api",
+          () -> {
+            post("/visitor-order", "application/json", ApiServer::VisitorOrderMethod);
+            get("/logs", ApiServer::getLogsMethod);
+          });
+    } catch (Exception exception) {
+      log.error(exception.getMessage());
+    }
   }
 
   private static String getLogsMethod(Request req, Response res) {

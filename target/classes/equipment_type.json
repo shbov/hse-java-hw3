@@ -1,0 +1,12 @@
+{
+  "equipment_type": [
+    {
+      "id": 2,
+      "equip_type_name": "rotary oven"
+    },
+    {
+      "id": 25,
+      "equip_type_name": "thermopot"
+    }
+  ]
+}

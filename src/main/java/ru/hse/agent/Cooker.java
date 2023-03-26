@@ -39,11 +39,10 @@ public class Cooker extends Agent {
     @Override
     protected void proceed(Message message) throws Exception {
         if (message instanceof ChangeOperationIn changeOperationIn) {
-            action = changeOperationIn.getOperation();
             active = true;
-            log.info("Start doing operation: " + action.getName());
-            Thread.sleep(action.getDuration() * 10L);
-            log.info("I'm done operation: " + action.getName());
+            log.info("Start doing operation: " + changeOperationIn.getOperation().getName());
+            Thread.sleep(changeOperationIn.getOperation().getDuration() * 10L);
+            log.info("I'm done operation: " + changeOperationIn.getOperation().getName());
             active = false;
         } else {
             log.error("Message not acceptable " + message.getClass().toString());

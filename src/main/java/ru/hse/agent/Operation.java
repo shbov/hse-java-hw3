@@ -69,7 +69,7 @@ public class Operation extends Agent {
     protected void processing() throws InterruptedException {
         Thread.sleep(duration * 10L);
         Date currentDate = new Date();
-        log.info("Process has ended " + currentDate + this);
+        log.info("Process has ended " + currentDate + this.getName());
         cooker.setActive(false);
         equipment.setActive(false);
         this.setEndDate(currentDate);

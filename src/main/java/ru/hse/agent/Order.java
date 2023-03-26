@@ -2,7 +2,6 @@ package ru.hse.agent;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,51 +16,46 @@ import ru.hse.utilities.AgentUtility;
 @Slf4j
 @ToString(callSuper = true)
 public class Order extends Agent {
-    @Getter
-    private List<Dish> dishes;
+  @Getter private List<Dish> dishes;
+  @Getter @Setter private List<Process> processes = new CopyOnWriteArrayList<>();
 
-    @Getter  @Setter
-    private List<Process> processes = new CopyOnWriteArrayList<>();
+  public Order(int id, SuperVisor supervisor, List<Dish> dishes) {
+    super(id, supervisor);
+    this.dishes = dishes;
+  }
 
-    public Order(int id, SuperVisor supervisor, List<Dish> dishes) {
-        super(id, supervisor);
-        this.dishes = dishes;
-    }
-
-    @Override
-    protected void proceed(Message message) throws Exception {
-        if (message instanceof CreateOrderIn createOrderIn) {
-            for(Dish dish :createOrderIn.dishes){
-                log.info("Reservate product");
-                for( Operation oper: dish.getOperations()){
-                    for (Ingredient ing: oper.getProducts() ) {
-                        Message request = new ReservateIngredientIn(ing.getId(),ing.getQuantity());
-                        getSupervisor().getStorage().registerMessage(request);
-                    }
-                }
-                Process cooking =
-                        new Process(
-                                AgentUtility.generateID(Order.class), this.getSupervisor(), dish.getOperations());
-                Process.start(cooking);
-                log.info("Order: Process start"+ cooking);
-                processes.add(cooking);
-            }
+  @Override
+  protected void proceed(Message message) throws Exception {
+    if (message instanceof CreateOrderIn createOrderIn) {
+      for (Dish dish : createOrderIn.dishes) {
+        log.info("Reservate product");
+        for (Operation oper : dish.getOperations()) {
+          for (Ingredient ing : oper.getProducts()) {
+            Message request = new ReservateIngredientIn(ing.getId(), ing.getQuantity());
+            getSupervisor().getStorage().registerMessage(request);
+          }
         }
-        else if (message instanceof GetWaitingTimeIn getWaitingTimeIn) {
-            int minute = 1000;
-            for (Dish dish : dishes) {
-                if (dish.getId() == getWaitingTimeIn.dishID) {
-                    for (Operation oper : dish.getOperations()) {
-                        minute += 3;
-                    }
-                }
-            }
-
-            log.info("Примерное время готовки заказа " + minute + " мин.");
-            Message respond = new SendWaitingTImeOut(minute);
-        }else {
-          log.error("Message not acceptable " + message.getClass().toString());
+        Process cooking =
+            new Process(
+                AgentUtility.generateID(Order.class), this.getSupervisor(), dish.getOperations());
+        Process.start(cooking);
+        log.info("Order: Process start" + cooking);
+        processes.add(cooking);
+      }
+    } else if (message instanceof GetWaitingTimeIn getWaitingTimeIn) {
+      int minute = 1000;
+      for (Dish dish : dishes) {
+        if (dish.getId() == getWaitingTimeIn.dishID) {
+          for (Operation oper : dish.getOperations()) {
+            minute += 3;
+          }
         }
+      }
 
+      log.info("Примерное время готовки заказа " + minute + " мин.");
+      Message respond = new SendWaitingTImeOut(minute);
+    } else {
+      log.error("Message not acceptable " + message.getClass().toString());
     }
+  }
 }

@@ -1,6 +1,12 @@
 package ru.hse.agent;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -12,12 +18,6 @@ import ru.hse.message.storage.RefreshMenu;
 import ru.hse.message.storage.ReservedIgredientForDish;
 import ru.hse.utilities.AgentUtility;
 import ru.hse.utilities.DeserializeUtility;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
 @ToString(callSuper = true)
@@ -93,6 +93,10 @@ public class Storage extends Agent {
             products =
                     DeserializeUtility.deserializeListOfObjects(json, "products", new TypeReference<>() {
                     });
+            if(products == null) {
+                products = new ArrayList<>();
+                log.warn("список продуктов пуст!");
+            }
             products.forEach(System.out::println);
         } catch (IOException ex) {
             log.error(ex.getMessage());

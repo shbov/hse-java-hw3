@@ -11,15 +11,15 @@ import ru.hse.message.Message;
 @ToString(callSuper = true)
 public class Ingredient extends Agent {
   @Getter private int productId;
-  @Getter @Setter
-  private double quantity;
+  @Getter @Setter private double quantity;
   @Getter private int supervisorId;
-  public Ingredient(){}
 
-  public Ingredient(int productId,double quantity,int supervisorId) {
-    this.productId=productId;
-    this.quantity=quantity;
-    this.supervisorId=supervisorId;
+  public Ingredient() {}
+
+  public Ingredient(int productId, double quantity, int supervisorId) {
+    this.productId = productId;
+    this.quantity = quantity;
+    this.supervisorId = supervisorId;
   }
 
   @Override

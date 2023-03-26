@@ -49,7 +49,7 @@ public class Storage extends Agent {
             Message respond = new FeedBackCheckIngredientOut(false);
         } else if (message instanceof ReservedIgredientForDish reservedIgredientForDish) {
             Ingredient ingredient = new Ingredient(
-                    AgentUtility.generateID(Ingredient.class),
+                reservedIgredientForDish.getIngId(),
                     reservedIgredientForDish.getQuantity(),
                     this.getSupervisor().getId());
             log.info("Reserved ingredient: id " + ingredient.getId() + ", quantity:" + ingredient.getQuantity());

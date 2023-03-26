@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import ru.hse.message.Message;
+import ru.hse.message.Message;import ru.hse.utilities.AgentUtility;
 
 @Slf4j
 @ToString(callSuper = true)
@@ -22,6 +22,8 @@ public class Ingredient extends Agent {
     }
 
     public Ingredient(int productId, double quantity, int supervisorId) {
+        setId(AgentUtility.generateID(Ingredient.class));
+
         this.productId = productId;
         this.quantity = quantity;
         this.supervisorId = supervisorId;

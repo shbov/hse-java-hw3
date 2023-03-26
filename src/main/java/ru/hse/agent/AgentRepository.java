@@ -2,6 +2,8 @@ package ru.hse.agent;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import lombok.Getter;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 @UtilityClass
 @Slf4j
 public class AgentRepository {
+
+    @Getter
     private static final List<Agent<?>> AGENTS = new CopyOnWriteArrayList<>();
 
     /**

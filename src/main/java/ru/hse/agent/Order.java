@@ -9,6 +9,7 @@ import ru.hse.message.order.GetWaitingTimeIn;
 import ru.hse.message.order.SendWaitingTImeOut;
 import ru.hse.message.storage.ReservedIgredientForDish;
 import ru.hse.message.supervisor.CreateOrderIn;
+import ru.hse.message.visitor.RequestTimeOut;
 import ru.hse.utilities.AgentUtility;
 
 import java.util.List;
@@ -23,9 +24,13 @@ public class Order extends Agent {
     @Setter
     private List<Process> processes = new CopyOnWriteArrayList<>();
 
-    public Order(int id, SuperVisor supervisor, List<Dish> dishes) {
+    @Getter
+    private int idVisitor;
+
+    public Order(int id, int idVisitor, SuperVisor supervisor, List<Dish> dishes) {
         super(id, supervisor);
         this.dishes = dishes;
+        this.idVisitor=idVisitor;
     }
 
     @Override
@@ -46,18 +51,10 @@ public class Order extends Agent {
                 log.info("Order: Process start" + cooking);
                 processes.add(cooking);
             }
-        } else if (message instanceof GetWaitingTimeIn getWaitingTimeIn) {
-            int minute = 1000;
-            for (Dish dish : dishes) {
-                if (dish.getId() == getWaitingTimeIn.dishID) {
-                    for (Operation oper : dish.getOperations()) {
-                        minute += 3;
-                    }
-                }
+        } else if (message instanceof RequestTimeOut requestTimeOut) {
+            for(Process process: processes) {
+                process.registerMessage(requestTimeOut);
             }
-
-            log.info("Примерное время готовки заказа " + minute + " мин.");
-            Message respond = new SendWaitingTImeOut(minute);
         } else {
             log.error("Message not acceptable " + message.getClass().toString());
         }

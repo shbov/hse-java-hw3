@@ -1,12 +1,6 @@
 package ru.hse.agent;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +12,13 @@ import ru.hse.message.storage.RefreshMenu;
 import ru.hse.message.storage.ReservedIgredientForDish;
 import ru.hse.utilities.AgentUtility;
 import ru.hse.utilities.DeserializeUtility;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
 @ToString(callSuper = true)
@@ -51,7 +52,7 @@ public class Storage extends Agent {
                     AgentUtility.generateID(Ingredient.class),
                     reservedIgredientForDish.getQuantity(),
                     this.getSupervisor().getId());
-            log.info("Reserved " + ingredient);
+            log.info("Reserved ingredient: id " + ingredient.getId() + ", quantity:" + ingredient.getQuantity());
             Ingredient.start(ingredient);
             Product product = products.stream()
                     .filter(p -> p.getType() == reservedIgredientForDish.getIngId())
@@ -67,13 +68,13 @@ public class Storage extends Agent {
                         Product outProduct = products.stream().filter(prod -> prod.getType() == ing.getId())
                                 .findFirst()
                                 .orElse(null);
-                        if (outProduct != null && outProduct.getQuantity() > outProduct.getQuantity()){
-                          f=false;
+                        if (outProduct != null && outProduct.getQuantity() > outProduct.getQuantity()) {
+                            f = false;
                         }
                     }
                 }
-                if(f){
-                  availableDish.add(dish);
+                if (f) {
+                    availableDish.add(dish);
                 }
             }
             Message respond = new RefreshMenu(availableDish, refreshMenu.getIdVisitor());
@@ -92,7 +93,7 @@ public class Storage extends Agent {
             products =
                     DeserializeUtility.deserializeListOfObjects(json, "products", new TypeReference<>() {
                     });
-            if(products == null) {
+            if (products == null) {
                 products = new ArrayList<>();
                 log.warn("список продуктов пуст!");
             }

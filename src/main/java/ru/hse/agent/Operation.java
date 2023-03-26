@@ -3,14 +3,11 @@ package ru.hse.agent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
-import ru.hse.message.supervisor.ReservateCookerIn;
-import ru.hse.message.supervisor.ReservateEquipmentIn;
 
 @Slf4j
 @ToString(callSuper = true)
@@ -33,7 +30,7 @@ public class Operation extends Agent {
 
   @Getter
   @JsonProperty("duration")
-  private double duration;
+  private int duration;
 
   @Getter @Setter
   private KitchenEquipment equipment;
@@ -51,8 +48,7 @@ public class Operation extends Agent {
 
   public Operation() {}
 
-  public Operation(
-      int id, SuperVisor supervisor, KitchenEquipment equipment) {
+  public Operation(int id, SuperVisor supervisor, KitchenEquipment equipment) {
     super(id, supervisor);
     this.equipment = equipment;
   }
@@ -61,8 +57,9 @@ public class Operation extends Agent {
   protected void proceed(Message o) throws Exception {
     processing();
   }
+  
   protected void processing() throws InterruptedException {
-    Thread.sleep((int)duration*10);
+    Thread.sleep(duration * 10L);
     Date currentDate = new Date();
     log.info("Process has ended "+currentDate+ this);
     cooker.setActive(false);

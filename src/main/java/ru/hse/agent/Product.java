@@ -24,7 +24,8 @@ public class Product extends Agent {
   @JsonProperty("prod_item_unit")
   private String unit;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   @JsonProperty("prod_item_quantity")
   private double quantity;
 

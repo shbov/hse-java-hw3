@@ -7,6 +7,7 @@ import ru.hse.agent.AgentRepository;
 
 @UtilityClass
 @Slf4j
+/** Утилита для работы с агентами */
 public class AgentUtility {
 
   /**

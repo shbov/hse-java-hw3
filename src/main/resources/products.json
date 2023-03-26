@@ -23,6 +23,17 @@
       "prod_item_valid_until": "2024-12-31T23:59:59"
     },
     {
+      "id": 1,
+      "prod_item_type": 12,
+      "name": "Lipton ice tea",
+      "prod_item_company": "LIPTON",
+      "prod_item_unit": "pc.",
+      "prod_item_quantity": 874,
+      "prod_item_cost": 1.5,
+      "prod_item_delivered": "2023-01-15T08:10:36",
+      "prod_item_valid_until": "2024-12-31T23:59:59"
+    },
+    {
       "id": 132,
       "prod_item_type": 22,
       "name": "Can of cola 0.33",

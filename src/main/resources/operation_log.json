@@ -2,7 +2,7 @@
   "operations": [
     {
       "id": 1,
-      "name": "Я супер операция",
+      "name": "Заварить чай",
       "duration": 10,
       "equip_type": 2,
       "products": [

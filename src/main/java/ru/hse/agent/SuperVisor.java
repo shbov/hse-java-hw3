@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
 public class SuperVisor extends Agent {
@@ -111,7 +112,11 @@ public class SuperVisor extends Agent {
             getStorage().registerMessage(request);
             log.info("Storage>> refreshing menu ");
         } else if (message instanceof RefreshMenu refreshMenu) {
-            log.info("This is our menu: " + refreshMenu.getDishes().toString());
+            List<String> menu = new CopyOnWriteArrayList<>();
+            for(Dish dish :refreshMenu.getDishes()){
+                menu.add(dish.getName());
+            }
+            log.info("This is our menu: " +menu.toString());
             Message respond = new SendMenuOut(refreshMenu.getDishes(), getId());
             Visitor visitor =
                     (Visitor) AgentRepository.findByTypeAndId(Visitor.class, refreshMenu.getIdVisitor());

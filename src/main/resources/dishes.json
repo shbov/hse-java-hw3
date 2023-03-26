@@ -15,6 +15,14 @@
       "operations": [
         1
       ]
+    },
+    {
+      "id" : 2,
+      "name": "Salad",
+      "dish_descr": "with tomato",
+      "operations": [
+        2
+      ]
     }
   ]
 }

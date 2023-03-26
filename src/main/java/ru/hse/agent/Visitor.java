@@ -11,6 +11,7 @@ import ru.hse.message.visitor.RequestTimeOut;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
 public class Visitor extends Agent {
@@ -25,12 +26,15 @@ public class Visitor extends Agent {
     protected void proceed(Message message) throws Exception {
         if (message instanceof SendMenuOut sendMenuOut) {
             Random random = new Random();
-            Dish dish = sendMenuOut.dishes.get(random.nextInt(sendMenuOut.dishes.size()));
-            log.info("Order of " + getName() + " " + dish);
-            List<Dish> arr = new ArrayList<>();
-            arr.add(dish);
+            List<String> choiceName = new CopyOnWriteArrayList<>();
+            List<Dish> choiceDish = new CopyOnWriteArrayList<>();
+            for (int i=0; i<= random.nextInt(sendMenuOut.dishes.size() - 1); ++i){
+                choiceName.add(sendMenuOut.dishes.get(i).getName());
+                choiceDish.add(sendMenuOut.dishes.get(i));
+            }
+            log.info("Order of " + getName() + " " + choiceName.toString());
 
-            Message respond = new CreateOrderIn(arr, getId());
+            Message respond = new CreateOrderIn(choiceDish, getId());
             Agent superVis = AgentRepository.findByTypeAndId(SuperVisor.class, sendMenuOut.idSupervisor);
             superVis.registerMessage(respond);
 

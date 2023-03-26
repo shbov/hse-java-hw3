@@ -1,16 +1,19 @@
 {
   "equipment": [
     {
+      "id": 1,
       "equip_type": 2,
       "name": "LIDER 250",
       "equip_active": false
     },
     {
+      "id": 2,
       "equip_type": 2,
       "name": "LIDER 150",
       "equip_active": false
     },
     {
+      "id": 3,
       "equip_type": 25,
       "name": "DAZHENG LOOKYAMI",
       "equip_active": false

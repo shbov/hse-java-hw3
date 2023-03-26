@@ -1,14 +1,13 @@
 package ru.hse.agent;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
-
-import java.util.Date;
-import java.util.List;
 
 @Slf4j
 @ToString(callSuper = true)
@@ -69,7 +68,7 @@ public class Operation extends Agent {
     protected void processing() throws InterruptedException {
         Thread.sleep(duration * 10L);
         Date currentDate = new Date();
-        log.info("Process has ended " + currentDate + this.getName());
+        log.info("Process has ended " + currentDate + " " + this.getName());
         cooker.setActive(false);
         equipment.setActive(false);
         this.setEndDate(currentDate);

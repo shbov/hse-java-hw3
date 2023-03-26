@@ -11,6 +11,7 @@ import ru.hse.message.Message;
 import ru.hse.message.ingredient.ReservateIngredientIn;
 import ru.hse.message.order.GetWaitingTimeIn;
 import ru.hse.message.order.SendWaitingTImeOut;
+import ru.hse.message.storage.ReservedIgredientForDish;
 import ru.hse.message.supervisor.CreateOrderIn;
 import ru.hse.utilities.AgentUtility;
 
@@ -35,7 +36,7 @@ public class Order extends Agent {
                 log.info("Reservate product");
                 for( Operation oper: dish.getOperations()){
                     for (Ingredient ing: oper.getProducts() ) {
-                        Message request = new ReservateIngredientIn(ing.getId(),ing.getQuantity());
+                        Message request = new ReservedIgredientForDish(ing.getId(),ing.getQuantity());
                         getSupervisor().getStorage().registerMessage(request);
                     }
                 }

@@ -49,16 +49,15 @@ public class Storage extends Agent {
         } else if (message instanceof ReservedIgredientForDish reservedIgredientForDish) {
             Ingredient ingredient = new Ingredient(
                     AgentUtility.generateID(Ingredient.class),
-                    reservedIgredientForDish.amount,
+                    reservedIgredientForDish.getQuantity(),
                     this.getSupervisor().getId());
             log.info("Reserved " + ingredient);
             Ingredient.start(ingredient);
             Product product = products.stream()
-                    .filter(p -> p.getId() == reservedIgredientForDish.getId())
+                    .filter(p -> p.getType() == reservedIgredientForDish.getIngId())
                     .findFirst()
                     .orElse(null);
-
-            product.setQuantity(product.getQuantity() - reservedIgredientForDish.amount);
+            product.setQuantity(product.getQuantity() - reservedIgredientForDish.getQuantity());
         } else if (message instanceof RefreshMenu refreshMenu) {
             List<Dish> availableDish = new CopyOnWriteArrayList<>();
             for (Dish dish : refreshMenu.getDishes()) {

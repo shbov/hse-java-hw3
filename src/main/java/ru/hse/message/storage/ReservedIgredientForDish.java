@@ -1,15 +1,16 @@
 package ru.hse.message.storage;
 
+import lombok.Getter;
 import ru.hse.message.Message;
 
 public class ReservedIgredientForDish extends Message {
-    public int IngId;
-    public int amount;
-    public String name;
+    @Getter
+    private int IngId;
+    @Getter
+    private double quantity;
 
-    public ReservedIgredientForDish(int IngId, String name, int amount) {
+    public ReservedIgredientForDish(int IngId, double quantity) {
         this.IngId = IngId;
-        this.name=name;
-        this.amount = amount;
+        this.quantity = quantity;
     }
 }

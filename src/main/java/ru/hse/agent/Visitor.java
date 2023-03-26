@@ -41,7 +41,7 @@ public class Visitor extends Agent {
             Message time = new RequestTimeOut(getId());
             superVis.registerMessage(time);
             Random rand = new Random();
-            Thread.sleep(rand.nextInt(30) + 30);
+            Thread.sleep(rand.nextInt(10) + 10);
             Message time2 = new RequestTimeOut(getId());
             superVis.registerMessage(time2);
 

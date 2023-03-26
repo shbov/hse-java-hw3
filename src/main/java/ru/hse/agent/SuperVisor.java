@@ -117,7 +117,7 @@ public class SuperVisor extends Agent {
                     (Visitor) AgentRepository.findByTypeAndId(Visitor.class, refreshMenu.getIdVisitor());
             visitor.registerMessage(respond);
         } else if (message instanceof RequestTimeOut requestTimeOut) {
-            log.info("Dear quest " + requestTimeOut.getId() + ", now I'll find out the waiting time");
+            log.info("Dear guest " + requestTimeOut.getId() + ", now I'll find out the waiting time");
             Order ourOrder = (Order) AgentRepository.getAGENTS().stream()
                     .filter(agent -> agent.getClass() == Order.class && ((Order) agent).getIdVisitor() == requestTimeOut.getIdVisitor())
                     .findFirst()

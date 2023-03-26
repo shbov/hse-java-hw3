@@ -32,7 +32,6 @@ public class SuperVisor extends Agent {
     @Getter
     private List<Dish> myDishes;
 
-    // TODO concurrent lists
     public SuperVisor(int id) {
         super(id, null);
 

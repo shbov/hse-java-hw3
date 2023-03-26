@@ -42,7 +42,7 @@ public class Visitor extends Agent {
             superVis.registerMessage(time2);
 
         } else if (message instanceof SendTimeOut sendTimeOut) {
-            log.info("Thanks for order time, Visitor#"+getId());
+            log.info("Thanks for order time, Visitor#" + getId());
         } else {
             log.error("Message not acceptable " + message.getClass().toString());
         }

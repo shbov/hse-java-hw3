@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
+import ru.hse.message.cooker.ChangeOperationIn;
 import ru.hse.message.supervisor.SendTimeOut;
 import ru.hse.message.visitor.RequestTimeOut;
 
@@ -47,10 +48,10 @@ public class Process extends Agent {
                             .findFirst()
                             .orElse(null);
             if (cooker != null && equipment != null) {
-                cooker.setActive(true);
                 equipment.setActive(true);
-                log.info("Cooker start cooking" + cooker);
-                log.info("Reservate equipment for cooker" + equipment);
+                Message request = new ChangeOperationIn(operation);
+                cooker.registerMessage(request);
+                log.info("Reservate equipment for cooker" + equipment.getName());
                 operation.setEquipment(equipment);
                 operation.setCooker(cooker);
                 currentDate = new Date();

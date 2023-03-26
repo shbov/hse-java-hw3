@@ -12,46 +12,51 @@ import ru.hse.message.cooker.ChangeOperationIn;
 @Slf4j
 @ToString(callSuper = true)
 public class Cooker extends Agent {
-  @JsonIgnore public Operation action;
+    @JsonIgnore
+    public Operation action;
 
-  @JsonProperty("cook_active")
-  @Getter @Setter
-  private boolean active;
+    @JsonProperty("cook_active")
+    @Getter
+    @Setter
+    private boolean active;
 
-  public Cooker() {}
-
-  public Cooker(int id, SuperVisor supervisor, String name, Operation action, boolean active) {
-    super(id, supervisor);
-    setName(name);
-    this.action = action;
-    this.active = active;
-  }
-
-  @Override
-  @JsonProperty("id")
-  public int getId() {
-    return super.getId();
-  }
-
-  @Override
-  protected void proceed(Message message) throws Exception {
-    if (message instanceof ChangeOperationIn changeOperationIn) {
-      action = changeOperationIn.operation;
-      log.info("Start doing operation: " + action.getName());
-      Thread.sleep(100000);
-      log.info("I'm done operation: " + action.getName());
-    } else {
-      log.error("Message not acceptable " + message.getClass().toString());
+    public Cooker() {
     }
-  }
 
-  @JsonProperty("name")
-  private void unpackName(String name) {
-    setName(name);
-  }
+    public Cooker(int id, SuperVisor supervisor, String name, Operation action, boolean active) {
+        super(id, supervisor);
+        setName(name);
+        this.action = action;
+        this.active = active;
+    }
 
-  @JsonProperty("id")
-  private void unpackId(int id) {
-    setId(id);
-  }
+    @Override
+    @JsonProperty("id")
+    public int getId() {
+        return super.getId();
+    }
+
+    @Override
+    protected void proceed(Message message) throws Exception {
+        if (message instanceof ChangeOperationIn changeOperationIn) {
+            action = changeOperationIn.getOperation();
+            active = true;
+            log.info("Start doing operation: " + action.getName());
+            Thread.sleep(action.getDuration() * 10L);
+            log.info("I'm done operation: " + action.getName());
+            active = false;
+        } else {
+            log.error("Message not acceptable " + message.getClass().toString());
+        }
+    }
+
+    @JsonProperty("name")
+    private void unpackName(String name) {
+        setName(name);
+    }
+
+    @JsonProperty("id")
+    private void unpackId(int id) {
+        setId(id);
+    }
 }

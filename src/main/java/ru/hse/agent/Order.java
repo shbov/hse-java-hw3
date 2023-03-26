@@ -5,8 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
-import ru.hse.message.order.GetWaitingTimeIn;
-import ru.hse.message.order.SendWaitingTImeOut;
 import ru.hse.message.storage.ReservedIgredientForDish;
 import ru.hse.message.supervisor.CreateOrderIn;
 import ru.hse.message.visitor.RequestTimeOut;
@@ -30,7 +28,7 @@ public class Order extends Agent {
     public Order(int id, int idVisitor, SuperVisor supervisor, List<Dish> dishes) {
         super(id, supervisor);
         this.dishes = dishes;
-        this.idVisitor=idVisitor;
+        this.idVisitor = idVisitor;
     }
 
     @Override
@@ -52,7 +50,7 @@ public class Order extends Agent {
                 processes.add(cooking);
             }
         } else if (message instanceof RequestTimeOut requestTimeOut) {
-            for(Process process: processes) {
+            for (Process process : processes) {
                 process.registerMessage(requestTimeOut);
             }
         } else {

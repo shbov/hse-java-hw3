@@ -7,7 +7,6 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import ru.hse.message.Message;
 
-// такое чувство будто он не обменивается сообщениями
 @Slf4j
 @ToString(callSuper = true)
 public class KitchenEquipment extends Agent {
@@ -31,7 +30,6 @@ public class KitchenEquipment extends Agent {
   @Override
   protected void proceed(Message o) throws Exception {
     // а что делать сковородке, когда она просто сковородка
-    // TODO с бедолагой никто не общается
   }
 
   @JsonProperty("name")

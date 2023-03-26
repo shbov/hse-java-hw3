@@ -52,7 +52,6 @@ public class Order extends Agent {
             for (Dish dish : dishes) {
                 if (dish.getId() == getWaitingTimeIn.dishID) {
                     for (Operation oper : dish.getOperations()) {
-                        //TODO тут нужно адекватно время считать
                         minute += 3;
                     }
                 }
@@ -60,7 +59,6 @@ public class Order extends Agent {
 
             log.info("Примерное время готовки заказа " + minute + " мин.");
             Message respond = new SendWaitingTImeOut(minute);
-            //TODO отправить ответ
         }else {
           log.error("Message not acceptable " + message.getClass().toString());
         }

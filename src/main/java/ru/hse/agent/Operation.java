@@ -59,10 +59,7 @@ public class Operation extends Agent {
 
   @Override
   protected void proceed(Message o) throws Exception {
-    //TODO либо так, либо при конструкторе сразу назначать
-    Message requestCooker = new ReservateCookerIn(this.getId());
-    Message requestEquipment = new ReservateEquipmentIn(this.getId());
-
+    processing();
   }
   protected void processing() throws InterruptedException {
     Thread.sleep((int)duration*10);
@@ -76,10 +73,5 @@ public class Operation extends Agent {
   @JsonProperty("id")
   private void unpackId(int id) {
     setId(id);
-  }
-
-  public void findAvailableEquipment() {
-    // ..
-    // equipment = find by id (" equipmentId ");
   }
 }

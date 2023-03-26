@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import ru.hse.message.Message;
+import ru.hse.message.storage.RefreshMenu;
 import ru.hse.message.supervisor.CreateOrderIn;
 import ru.hse.message.supervisor.SendMenuOut;
 import ru.hse.message.visitor.RequestMenuOut;
@@ -36,7 +37,6 @@ public class SuperVisor extends Agent {
         try {
             storage = new Storage(AgentUtility.generateID(Storage.class), this);
             storage.initStorage();
-
             initCookers();
             initEquipment();
             initDishes();
@@ -61,10 +61,10 @@ public class SuperVisor extends Agent {
                 DeserializeUtility.deserializeListOfObjects(jsonEq, "equipment", new TypeReference<>() {
                 });
         myEquipments.forEach(System.out::println);
-      myEquipments.forEach(c -> {
-        System.out.println(c);
-        KitchenEquipment.start(c);
-      });
+        myEquipments.forEach(c -> {
+            System.out.println(c);
+            KitchenEquipment.start(c);
+        });
     }
 
     private void initCookers() throws IOException {
@@ -75,8 +75,8 @@ public class SuperVisor extends Agent {
                 DeserializeUtility.deserializeListOfObjects(jsonCook, "cookers", new TypeReference<>() {
                 });
         myCookers.forEach(c -> {
-          System.out.println(c);
-          Cooker.start(c);
+            System.out.println(c);
+            Cooker.start(c);
         });
     }
 
@@ -89,10 +89,14 @@ public class SuperVisor extends Agent {
             Order.start(order);
             order.registerMessage(createOrderIn);
         } else if (message instanceof RequestMenuOut requestMenuOut) {
-            log.info("This is our menu: " + myDishes.toString());
-            Message respond = new SendMenuOut(myDishes, getId());
+            Message request = new RefreshMenu(myDishes, requestMenuOut.idVisitor);
+            getStorage().registerMessage(request);
+            log.info("Storage>> refreshing menu ");
+        } else if (message instanceof RefreshMenu refreshMenu) {
+            log.info("This is our menu: " + refreshMenu.getDishes().toString());
+            Message respond = new SendMenuOut(refreshMenu.getDishes(), getId());
             Visitor visitor =
-                    (Visitor) AgentRepository.findByTypeAndId(Visitor.class, requestMenuOut.idVisitor);
+                    (Visitor) AgentRepository.findByTypeAndId(Visitor.class, refreshMenu.getIdVisitor());
             visitor.registerMessage(respond);
         } else {
             log.error("Message not acceptable " + message.getClass().toString());

@@ -63,7 +63,6 @@ public class Product extends Agent {
 
   @Override
   protected void proceed(Message message) throws Exception {
-    // TODO с бедолагой никто не общается
   }
 
   @JsonProperty("name")

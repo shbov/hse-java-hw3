@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import ru.hse.Main;
 import ru.hse.message.Message;
 
-// такое чувство будто он не обменивается сообщениями
 @Slf4j
 @ToString(callSuper = true)
 public class Dish extends Agent {
@@ -26,13 +25,11 @@ public class Dish extends Agent {
     this.operations = operations;
   }
 
-  public int getCost() {
-    return 0; // todo compute cost price
-  }
+  public void getCost() {}
 
   @Override
   protected void proceed(Message o) throws Exception {
-    // TODO с бедолагой никто не общается
+    // с бедолагой никто не общается
   }
 
   @JsonProperty("name")

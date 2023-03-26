@@ -7,6 +7,14 @@
       "operations": [
         1
       ]
+    },
+    {
+      "id" : 2,
+      "name": "Lipton ice tea",
+      "dish_descr": "with some ice",
+      "operations": [
+        1
+      ]
     }
   ]
 }

@@ -1,5 +1,5 @@
 <archetype>
-  <id>hse-java-hw1</id>
+  <id>hse-java-hw3</id>
   <sources>
     <source>src/main/java/App.java</source>
   </sources>

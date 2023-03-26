@@ -33,4 +33,17 @@ public class DeserializeUtility {
 
     return list;
   }
+
+  public static <T> T deserializeObject(String json, final TypeReference<T> type) {
+    T list = null;
+
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      list = mapper.readValue(json, type);
+    } catch (JsonProcessingException exception) {
+      log.error(exception.getMessage());
+    }
+
+    return list;
+  }
 }

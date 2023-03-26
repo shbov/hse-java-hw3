@@ -21,12 +21,13 @@ import ru.hse.utilities.DeserializeUtility;
 @Slf4j
 public class Main {
   @Getter private static List<Operation> myOperations;
+  @Getter private static SuperVisor superVisor;
 
   public static void main(String[] args) throws IOException, InterruptedException {
     ApiServer.start();
     initOperations();
 
-    SuperVisor superVisor = new SuperVisor(AgentUtility.generateID(SuperVisor.class));
+    superVisor = new SuperVisor(AgentUtility.generateID(SuperVisor.class));
     Agent.start(superVisor);
 
     FileInputStream fis = new FileInputStream("src/main/resources/visitors.json");

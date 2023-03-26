@@ -1,4 +1,6 @@
-target/
+target
+!target/hse-hw3/*
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

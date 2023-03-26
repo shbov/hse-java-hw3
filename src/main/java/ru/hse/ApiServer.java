@@ -2,38 +2,74 @@ package ru.hse;
 
 import static spark.Spark.*;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
+import ru.hse.agent.Visitor;
+import ru.hse.message.Message;
+import ru.hse.message.visitor.RequestMenuOut;
+import ru.hse.utilities.DeserializeUtility;
 
 @Slf4j
 @UtilityClass
 public class ApiServer {
   public static void start() {
-    get(
-        "/api/logs",
-        (req, res) -> {
-          String result = "{}";
+    path(
+        "/api",
+        () -> {
+          post(
+              "/visitor-order",
+              "application/json",
+              (req, res) -> {
+                Visitor visitor = null;
 
-          try {
-            FileInputStream fis = new FileInputStream("storage/logs/log.json");
-            List<String> json = IOUtils.readLines(fis);
+                try {
+                  visitor =
+                      DeserializeUtility.deserializeObject(
+                          req.queryParams("visitor"), new TypeReference<>() {});
+                } catch (Exception e) {
+                  log.error(e.getMessage());
+                }
 
-            if (!json.isEmpty()) {
-              result = "[" + joinLinesWithComma(json) + "]";
-            } else {
-              result = json.toString();
-            }
-          } catch (IOException exception) {
-            log.error(exception.toString());
-          }
+                if (visitor != null) {
+                  log.info("Пришел пользователь из API: {}", visitor);
+                  Visitor.start(visitor);
 
-          res.type("application/json\n");
-          res.status(200);
-          return result;
+                  Message mess = new RequestMenuOut(visitor.getId());
+                  Main.getSuperVisor().registerMessage(mess);
+
+                  Thread.sleep(100);
+                  return "заказ получен и находится в работе";
+                }
+
+                return "error: request is invalid";
+              });
+          get(
+              "/logs",
+              (req, res) -> {
+                String result = "{}";
+
+                try {
+                  FileInputStream fis = new FileInputStream("storage/logs/log.json");
+                  List<String> json = IOUtils.readLines(fis);
+
+                  if (!json.isEmpty()) {
+                    result = "[" + joinLinesWithComma(json) + "]";
+                  } else {
+                    result = json.toString();
+                  }
+                } catch (IOException exception) {
+                  log.error(exception.toString());
+                }
+
+                res.type("application/json\n");
+                res.status(200);
+                return result;
+              });
         });
   }
 
